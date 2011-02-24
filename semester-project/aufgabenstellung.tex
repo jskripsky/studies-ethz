@@ -1,0 +1,80 @@
+\documentclass[E]{DASA}
+\renewcommand{\asst}{Martin Hirt}
+
+\begin{document}
+
+\SA{October 23, 2001}{February 15, 2002}{Juraj Skripsky}%
+{Minimal Models for Receipt-Free Voting}
+
+\intro
+
+Secret-ballot voting schemes belong to the most significant applications of
+cryptographic protocols. They allow the computation of the tally of the
+cast votes, while preserving privacy of each particular ballot. More
+precisely, the following properties must be satisfied:
+\begin{itemize}\itemsep=0pt\parsep=0pt
+\item {\sc Secrecy.} It is infeasible to find out which voter has submitted
+  which vote.
+\item {\sc Eligibility.} Only entitled voters are able to submit a vote.
+\item {\sc no double-voting.} Every entitled voter can cast only one single
+  vote.
+\item {\sc Validity.} Only valid votes are counted, e.g., ``yes'' and
+  ``no'' votes.
+\item {\sc Correctness.} The published tally is the correct sum of all
+  valid votes.
+\item {\sc Local verifiability.} Every voter can verify whether his vote
+  is included in the tally.
+\item {\sc Global verifiability.} Anyone can verify the correctness of the
+  tally.
+\end{itemize}
+
+An important concept that was neglected in the classical literature is
+{\em receipt-freeness}. The goal of receipt-freeness is to thwart
+vote-selling and coercion. More formally, receipt-freeness requires that
+the voter is not able to construct a receipt (a witness) of the cast vote.
+
+The concept of receipt-freeness was introduced by Benaloh and Tuinstra
+\cite{BenTui94}. Later, many receipt-free protocols were proposed
+\cite{SakKil95,Okamot96,Okamot97,HirSak00,LeeKim00,Hirt01,BPPSF01}.  All
+these protocols make additional (rather unrealistic) assumptions on the
+communication model, e.g., existence of a voting booth or of untappable
+channels.
+
+Receipt-freeness is a very subtle property. The problem is that the voter
+{\em wants\/} to prove his vote, and hence he might even deviate from the
+protocol in order to construct a receipt. Even worse, there are no sharp
+definitions of receipt-freeness, and many different flavors of this
+property are implicitly considered in the literature. Several of the
+proposed protocols were partially or completely broken
+\cite{MicHor96,Okamot97,Schoen99:pc,HirSak00}.
+
+
+\desc
+
+The goal of this work is to bring light into the definitions and models of
+receipt-freeness. So far, many different (and incompatible) notions are
+used, and comparison of proposed protocols and models is very difficult.
+Several conjectures and propositions on impossibility or optimality of
+certain models can be found in the literature, where formal definitions and
+proofs are missing. Special focus should be given to practical models,
+leading to the question what type of receipt-freeness is still possible
+with realistic assumptions.
+
+
+\tasks
+
+The following is an (incomplete) list of tasks:
+\begin{itemize}
+  \item Study of the literature,
+  \item find exact definitions of receipt-freeness,
+  \item propose realistic models for receipt-free voting protocols,
+  \item proof sufficiency and necessity of assumptions.
+\end{itemize}
+
+\blah
+
+\refs
+
+\bibliography{mpc,ba,complex,it,ss,voting,proof,classic,all,allno,allspec}
+
+\end{document}

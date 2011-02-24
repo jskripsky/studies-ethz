@@ -1,0 +1,511 @@
+\documentclass{article}
+
+\title{\bf Efficient Receipt-Free Voting\\
+       Based on Homomorphic Encryption}
+\author{Martin Hirt \and Kazue Sako}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Voting schemes that provide {\em receipt-freeness\/} prevent voters from
+  proving their cast vote, and hence thwart vote-buying and
+  coercion. 
+  We analyze the security of the multi-authority voting
+  protocol of Benaloh and Tuinstra and demonstrate that this protocol is
+  {\em not\/} receipt-free, opposed to what was claimed in the paper and
+  was believed before. Furthermore, we propose the first practicable
+  receipt-free voting scheme. Its only physical assumption is the existence
+  of secret {\em one-way\/} communication channels from the
+  authorities to the voters, and due to the public verifiability of the
+  tally, voters only join a single stage of the protocol, realizing the
+  ``vote-and-go'' concept. The protocol combines the advantages of the
+  receipt-free protocol of Sako and Kilian and of the very efficient
+  protocol of Cramer, Gennaro, and Schoenmakers, with help of
+  designated-verifier proofs of Jakobsson, Sako, and Impagliazzo.
+
+  Compared to the receipt-free protocol of Sako and Kilian for security
+  parameter $\ell$ (the number of repetitions in the non-interactive
+  cut-and-choose proofs), the protocol described in this paper realizes an
+  improvement of the total bit complexity by a factor $\ell$.
+
+  \smallskip\noindent{\bf Key words.}
+  Receipt-free voting, Uncoercibility, Designated-verifier proofs.
+\end{abstract}
+
+
+%----------------------------------------------------------------------
+
+\section{Introduction}\label{intro}
+
+\subsection{Background}
+
+Secret-ballot voting protocols are one of the most significant
+application of cryptographic protocols. The most efficient
+secret-ballot voting protocols can be categorized by their approaches
+into three types: Schemes using mix-nets
+\cite{Cha81,PIK93,SK95,OKS97,Jak98,Abe99}, schemes using homomorphic
+encryption \cite{CF85,CY86,Ben87,%Ive91,
+BT94,SK94,CFSY96,CGS97}, and schemes using
+blind signatures \cite{FOO92,Sak94,Oka97}. The suitability of each of
+these three types varies with the conditions under which it is to be
+applied.
+
+In a model with vote-buyers (or coercers), a voting scheme must ensure not
+only that a voter {\em can\/} keep his vote private, but also that he
+{\em must\/} keep it private. In other words, the voter should not be
+able to prove to a third party that he has cast a particular vote. He must
+neither obtain nor be able to construct a receipt proving the content of
+his vote. This property is referred to as {\em receipt-freeness\/}.
+
+The concept of receipt-freeness was first introduced by Benaloh and
+Tuinstra \cite{BT94}. Based on the assumption of a voting booth that
+physically guarantees
+%two-way
+secret communication between the authorities and each voter,
+they proposed two voting protocols using homomorphic
+encryptions.  The first one is a single-authority voting protocol which,
+while being receipt-free, fails to maintain vote secrecy.  Then they extend
+this protocol to the second protocol, which is a multi-authority scheme
+achieving vote secrecy.  However, we show that this scheme is {\em not\/}
+receipt-free, as opposed to what is claimed in the paper.
+
+Another receipt-free voting protocol based on a mix-net channel was
+proposed by Sako and Kilian \cite{SK95}. In contrast to \cite{BT94}, it
+assumes only {\em one-way\/} secret communication from the authorities to
+the voters. The heavy processing load required for tallying in mix-net
+schemes, however, is a significant disadvantage of this protocol.
+
+Finally, a receipt-free voting scheme using blind signatures was given by
+Okamoto \cite{Oka97}. Here, the assumption was of {\em anonymous\/} one-way
+secret communication from each voter to each authority. Achieving
+communication that is both secret {\em and\/} anonymous would, however, be
+extremely difficult. Also, this scheme requires each voter to be active in
+{\em three rounds\/} (authorization stage, voting stage, and claiming
+stage), which is not acceptable in practice.
+
+Another stream of research which relates to receipt-freeness is incoercible
+multi-party computation. Without any physical assumption, deniable
+encryption \cite{CDNO97} allows an entity to lie {\em later\/} how the
+ciphertext decrypts, and this technique is used to achieve incoercible
+multi-party computation \cite{CG96}. However, the concept of incoercibility
+is weaker than receipt-freeness. It would allow a voter to lie about his
+vote, but it cannot help against a voter who {\em wants\/} to make his
+encryption undeniable, and hence cannot prevent vote-buying.
+
+
+\subsection{Contributions}
+
+In this paper, we first demonstrate that the multi-authority protocol
+of Benaloh and Tuinstra \cite{BT94} is not receipt-free, opposed to what
+was claimed in the paper and was believed before.
+%\footnote{The
+%  single-authority protocol of \cite{BT94}, which is later extended to the
+%  multi-authority protocol, indeed seems to be receipt-free, but
+%  ``elections where one authority knows how each vote was cast are quite
+%  far from satisfactory'' \cite{BT94}.}
+We then present a novel generic construction for introducing
+receipt-freeness into a voting scheme based on homomorphic encryption
+by assuming some additional properties of the encryption function.
+This construction also includes a solution for the case that an
+authority does not send correct information through the untappable
+channel.\footnote{Due to the untappability of the channel the voter
+  cannot prove that the received information is incorrect. In previous
+  protocols, this problem was ignored, and the situation of a voter
+  complaining about an authority would have lead to a deadlock.}
+Moreover, as opposed to previous receipt-free protocols, we disable
+vote-buying even in cases where some authorities are colluding with
+the voter-buyer. The security of these protocols is specified with
+respect to a threshold $t$, where the correctness of the tally is
+guaranteed as long as at least $t$ authorities remain honest during
+the whole protocol execution, and privacy is guaranteed as long as no
+$t$ or more curious authorities pool their information.
+
+Our construction gives a receipt-free voting protocol which runs as
+follows: For each voter the authorities jointly generate a randomly
+ordered list with an encryption of each valid vote, along the lines
+of \cite{SK95}. The ordering of the list is secretly conveyed and proven
+to the voter by deploying the technique of designated-verifier proofs
+\cite{JSI96}, and the voter points to the encryption of his
+choice. Tallying of votes is performed using the homomorphic property
+of the encryption function.
+
+By applying this generic construction to the voting protocol of
+Cramer, Gennaro, and Schoenmakers \cite{CGS97}, we obtain an efficient
+receipt-free voting protocol based on homomorphic encryption.
+
+The efficiency achieved by our protocol compared to the protocol
+of Sako and Kilian \cite{SK95} with security parameter $\ell$ in the
+case of $1$-out-of-$2$ voting is as follows:
+The communication through the untappable channels and through the
+public channels are reduced by a factor of $\ell/4$ and $3\ell/2$,
+respectively. Altogether, this results in a speedup by a factor of $\ell$.
+As an example, for $M=1,000,000$ voters, $N=10$ authorities, a $K=1024$ bit
+group, and security parameter $\ell=80$, the protocol of \cite{SK95}
+communicates $102\,\mathrm{GB}$ (gigabyte) over the untappable channels and
+$924\,\mathrm{GB}$ over the public channels, whereas the protocol of this
+paper communicates $5\,\mathrm{GB}$ over untappable channels and
+$8\,\mathrm{GB}$ over public channels.
+
+\subsection{Organization of the Paper}
+
+The paper is organized as follows: In Sect.~\ref{sec:BT}, we analyze the
+receipt-freeness of the protocol with multiple voting authorities of
+Benaloh and Tuinstra \cite{BT94} and demonstrate its non receipt-freeness
+by showing how a voter can construct a receipt for the vote he casts. In
+Sect.~\ref{sec:genconstr}, we present a generic receipt-free protocol
+for $1$-out-of-$L$ voting based on homomorphic encryptions, and in
+Sect.~\ref{sec:protCGS} we apply these techniques to the protocol of
+Cramer, Gennaro, and Schoenmakers \cite{CGS97} and obtain an efficient
+receipt-free voting scheme. Finally, in Sect.~\ref{sec:eff}, we even
+improve the efficiency of our protocol by tailoring it to $1$-out-of-$2$
+voting.
+
+
+%----------------------------------------------------------------------
+
+\section{Analysis of the Benaloh-Tuinstra Protocol}\label{sec:BT}
+
+The notion of receipt-freeness was first introduced by Benaloh and Tuinstra
+in \cite{BT94}.  They present two protocols that are claimed to be
+receipt-free. In the single-authority protocol, the authority learns how
+each vote was cast. This is of course far from satisfactory.  In this
+section, we analyze the receipt-freeness of their protocol with multiple
+voting authorities and show how a voter can construct a receipt for the
+vote he casts.
+
+
+\subsection{Key Ideas of the Protocol}
+
+The basic idea of the multiple-authority protocol \cite{BT94} is to have
+every voter secret-share his vote among the authorities (using Shamir's
+secret-sharing scheme \cite{Sha79}), who then add up the shares and
+interpolate the tally. This idea works due to the linearity of the
+secret-sharing scheme. There are two major tasks to solve: First, the
+voter must send one share to each authority in a receipt-free manner,
+and second, the voter must prove that the secret (the vote) is valid.
+
+We concentrate on the second task: In order to secret-share the vote,
+the voter selects a random polynomial $P$ of appropriate degree, such
+that $P(0)\in\{0,1\}$ is his vote. The share for the $j$-th authority is
+hence $P(j)$. Clearly, it is inherently important that the vote is
+valid, i.e. $P(0)\in\{0,1\}$, since otherwise the tally will be
+incorrect. Hence, the voter must provide a proof of validity for the
+cast vote.
+
+For the sake of the proof of validity, the voter wishing to cast a vote
+$v_0$ submits a bunch of $n+1$ vote pairs, where $n$ is a security
+parameter. That is, the voter submits the votes $(v_0,v_0'), \ldots,
+(v_n,v_n')$, and each pair $(v_i,v_i')$ of votes must contain one $0$-vote
+and one $1$-vote in random order.
+For each pair $(v_i,v_i')$ but the first, a coin is tossed and the voter
+is either asked to open the pair and show that indeed there is a
+$0$-vote and a $1$-vote, or he is asked to prove that either $v_i=v_0$
+and $v_i'=v_0'$ is satisfied, or that $v_i=v_0'$ and $v_i'=v_0$ is
+satisfied. If the voter passes these tests, then with probability at
+least $1-2^{-n}$, $v_0$ is valid and is accepted as the voters vote.
+
+\subsection{How to Construct a Receipt}
+
+This cut-and-choose proof of validity offers an easy ability to prove a
+particular vote: In advance, the voter commits to the ordering of each
+pair of votes (i.e.~he commits to the bit string $v_0,\ldots,v_n$). In
+each round of the cut-and-choose proof, one can verify whether the
+revealed data is consistent with this commitment. If no inconsistencies
+are detected while proving the validity of the vote, then with
+probability at least $1-2^{-n}$ the voter has chosen the ordering as
+committed, and also $v_0$ is as announced.
+
+In order to obtain a receipt, the voter could select an arbitrary string
+$s$, and set the string $(v_0,\ldots,v_n)$ as the bitwise output of a
+known cryptographic hash function (e.g. MD5 or SHA) for that string
+$s$. Then, $s$ is a receipt of the vote $v_0$.
+
+
+%----------------------------------------------------------------------
+
+\section{Generic Receipt-Free Protocol}\label{sec:genconstr}
+
+\ldots
+
+
+\section{Made Receipt-Free}
+
+\section{Efficient Receipt-Free 1-out-of-2 Voting}
+\label{sec:eff}
+
+
+\section{Concluding Remarks}
+
+\section{Acknowledgments}
+
+\begin{appendix}
+\section{Ensuring Knowledge of the Secret-Key}
+\label{app:proveSK}
+
+In a model providing receipt-freeness, it is essential that each voter
+knows his own secret-key. We assume that this verification is part of the
+underlying public-key infrastructure, but nevertheless we provide a
+protocol that ensures a voter's  knowledge of his secret-key. This
+protocol may be performed as part of the key registration (in the
+public-key infrastructure), or as part of the voting protocol if the key
+infrastructure does not provide this property. This protocol requires a
+secure one-way untappable channel as used in the vote generation phase.
+
+The following protocol is based on Feldman's secret-sharing scheme
+\cite{Fel87}. It establishes that a voter $v$ knows the secret key
+$z_v$ corresponding to his public key $h_v$ (where $g^{z_v}=h_v$):
+
+\begin{itemize}
+\item The voter shares his secret key $z_v$ among the authorities by using
+  Feldman's secret-sharing scheme \cite{Fel87}: The voter $v$ chooses a
+  uniformly distributed random polynomial
+  $f_v(x)=z_v+a_1x+\ldots+a_{t-1}x^{t-1}$ of degree $t-1$, and secretly
+  sends\footnote{Either the voter encrypts the share with the authority's
+    public-key, or alternatively the authority first sends a one-time pad
+    through the untappable channel, and the voter then encrypts with this
+    pad.} the share $s_i=f_v(i)$ to authority $A_i$ (for $i=1,\ldots,N$).
+  Furthermore, the voter commits to the coefficient of the polynomial by
+  sending $c_i=g^{a_i}$ for $i=1,\ldots,t-1$ to the bulletin board.
+\item Each authority $A_i$ verifies with the following equation whether the
+  received share $s_i$ indeed lies on the committed polynomial $f_v(\cdot)$:
+  \[ g^{s_i} \stackrel{?}{=}
+       h_v \cdot c_1^i \cdot \ldots \cdot c_{t-1}^{i^{t-1}}
+     \ \ \ \ 
+     \Bigl( = g^{z_v} \cdot g^{a_1i} \cdots \ldots \cdots g^{a_{t-1}i^{t-1}}
+            = g^{f_v(i)} \Bigr)
+     \ .
+  \]
+  If an authority detects an error, she complains and the voter is
+  requested to post her share to the bulletin board. If the posted share
+  does not correspond to the commitments, the voter is disqualified.
+\item Finally, every authority (which did not complain in the previous
+  stage) sends her share through the untappable channel to the voter.
+\end{itemize}
+
+In the above protocol, clearly after the second step, either the (honest)
+authorities will have consistent shares of the voter's secret key $z_v$, or
+the voter will be disqualified. However, so far it is not ensured that the
+voter indeed knows the secret key, as the shares could have been provided
+by the coercer. In any case, in the final step the voter learns
+$z_v$. There are at least $t$ honest authority who either complained 
+(and thus their share is published), or who sent their share to the voter,
+and hence the voter can interpolate the secret key $z_v$.
+
+\end{appendix}
+
+%----------------------------------------------------------------------
+
+\begin{thebibliography}{[CDNO97]}
+
+\bibitem[Abe99]{Abe99}
+Masayuki Abe.
+%M. Abe.
+\newblock Mix-networks on permutation networks
+\newblock In {\em Advances in Cryptology --- {ASIACRYPT}~'99},
+  vol.~1716 of {\em LNCS}, pp.~258--273.
+  {Springer-Verlag}, 1999.
+
+\bibitem[Ben87]{Ben87}
+Josh~Cohen Benaloh:
+\newblock {\em Verifiable Secret-Ballot Elections.}
+\newblock Yale University PhD thesis, YALEU/DCS/TR-561, 1987.
+
+\bibitem[BT94]{BT94}
+Josh~Cohen Benaloh and Dwight Tuinstra.
+%J. Benaloh and D. Tuinstra.
+\newblock Receipt-free secret-ballot elections (extended abstract).
+\newblock In {\em Proc.~26th {ACM} Symposium on the Theory of Computing
+  ({STOC})}, pp.~544--553.
+  ACM, 1994.
+
+\bibitem[CDNO97]{CDNO97}
+Ran Canetti, Cynthia Dwork, Moni Naor, and Rafail Ostrovsky.
+%R. Canetti, C. Dwork, M. Naor, and R. Ostrovsky.
+\newblock Deniable encryption.
+\newblock In {\em Advances in Cryptology --- {CRYPTO}~'97},
+  vol.~1294 of {\em LNCS}, pp.~90--104.
+  {Springer-Verlag}, 1997.
+
+\bibitem[CG96]{CG96}
+Ran Canetti and Rosario Gennaro.
+%R. Canetti and R. Gennaro.
+\newblock Incoercible multiparty computation.
+\newblock In {\em Proc.~37th {IEEE} Symposium on the Foundations of 
+  Computer Science ({FOCS})}, 1996.
+
+\bibitem[Cha81]{Cha81}
+David Chaum.
+%D. Chaum.
+\newblock Untraceable electronic mail, return addresses, and digital
+  pseudonyms.
+\newblock {\em Communications of the ACM}, 24(2):84--88, 1981.
+
+\bibitem[CDS94]{CDS94}
+Ronald Cramer, Ivan Damg{\aa}rd, and Berry Schoenmakers.
+%R. Cramer, I. Damg{\aa}rd, and B. Schoenmakers.
+\newblock Proofs of partial knowledge and simplified design of witness 
+  hiding protocols.
+\newblock In {\em Advances in Cryptology --- {CRYPTO}~'94},
+  vol.~839 of {\em LNCS}.
+  {Springer-Verlag}, 1994.
+
+\bibitem[CF85]{CF85}
+Josh~D. Cohen (Benaloh) and Michael~J. Fischer.
+%J. Cohen (Benaloh) and M. Fischer.
+\newblock A robust and verifiable cryptographically secure election
+  scheme.
+\newblock In {\em Proc.~26th {IEEE} Symposium on the Foundations of 
+  Computer Science ({FOCS})}, pp.~372--382. IEEE, 1985.
+
+\bibitem[CY86]{CY86}
+Josh Cohen (Benaloh) and Moti Yung:
+\newblock Distributing the Power of a Government to Enhance the Privacy of
+  Voters.
+\newblock In {\em Proc.~5th {ACM} Symposium on Principles of Distributed
+  Computing ({PODC})}, pp.~52--62.
+  ACM, 1986.
+
+\bibitem[CFSY96]{CFSY96}
+Ronald Cramer, Matthew~K. Franklin, Berry Schoenmakers, and Moti Yung.
+%R. Cramer, M. Franklin, B. Schoenmakers, and M. Yung.
+\newblock Multi-authority secret-ballot elections with linear work.
+\newblock In {\em Advances in Cryptology --- {EUROCRYPT}~'96},
+  vol.~1070 of {\em LNCS}, pp.~72--83.
+  {Springer-Verlag}, May 1996.
+
+\bibitem[CGS97]{CGS97}
+Ronald Cramer, Rosario Gennaro, and Berry Schoenmakers.
+%R. Cramer, R. Gennaro, and B. Schoenmakers.
+\newblock A secure and optimally efficient multi-authority election
+  scheme.
+\newblock {\em European Transactions on Telecommunications}, 8:481--489,
+  1997.
+  Preliminary version in {\em Advances in Cryptology --- {EUROCRYPT}~'97}.
+
+\bibitem[E84]{E84}
+Taher ElGamal.
+%T. ElGamal.
+\newblock A public key cryptosystem and a signature scheme based on 
+  discrete logarithms.
+\newblock In {\em Advances in Cryptology --- {CRYPTO}~'84},
+  vol.~196 of {\em LNCS}, pp.~10--18.
+  {Springer-Verlag}, 1984.
+
+\bibitem[Fel87]{Fel87}
+Paul Feldman.
+%P. Feldman.
+\newblock A practical scheme for non-interactive verifiable secret sharing.
+\newblock In {\em Proc.~28th {IEEE} Symposium on the Foundations of Computer
+  Science ({FOCS})}, pp.~427--437, 1987.
+
+\bibitem[FS86]{FS86}
+Amos Fiat and Adi Shamir.
+%A. Fiat and A. Shamir.
+\newblock How to prove yourself: Practical solutions to identification
+  and signature problems.
+\newblock In {\em Advances in Cryptology --- {CRYPTO}~'86},
+  vol.~263 of {\em LNCS}, pp.~186--194.
+  {Springer-Verlag}, 1986.
+
+\bibitem[FOO92]{FOO92}
+Atsushi Fujioka, Tatsuaki Okamoto, and Kazuo Ohta.
+%A. Fujioka, T. Okamoto, and K. Ohta.
+\newblock A practical secret voting scheme for large scale elections.
+\newblock In {\em Advances in Cryptology --- {AUSCRYPT}~'92},
+  pp.~244--251, 1992.
+
+\bibitem[JSI96]{JSI96}
+Markus Jakobsson, Kazue Sako, and Russell Impagliazzo.
+%M. Jakobsson, K. Sako, and R. Impagliazzo.
+\newblock Designated-verifier proofs and their applications.
+\newblock In {\em Advances in Cryptology --- {EUROCRYPT}~'96},
+  vol.~1070 of {\em LNCS}, pp.~143--154.
+  {Springer-Verlag}, 1996.
+
+\bibitem[Jak98]{Jak98}
+Markus Jakobsson.
+%M. Jakobsson.
+\newblock A Practical Mix.
+\newblock In {\em Advances in Cryptology --- {EUROCRYPT}~'98},
+  vol.~1403 of {\em LNCS}, pp.~448--461,
+  {Springer-Verlag}, 1998.
+
+\bibitem[MH96]{MH96}
+Markus Michels and Patrick Horster.
+%M. Michels and P. Horster.
+\newblock Some remarks on a receipt-free and universally verifiable
+  mix-type voting scheme.
+\newblock In {\em Advances in Cryptology --- {ASIACRYPT}~'96},
+  vol.~1163 of {\em LNCS}, pp.~125--132.
+  {Springer-Verlag}, 1996.
+
+\bibitem[Oka97]{Oka97}
+Tatsuaki Okamoto.
+%T. Okamoto.
+\newblock Receipt-free electronic voting schemes for large scale
+  elections.
+\newblock In {\em Proc.~of Workshop on Security Protocols~'97},
+  vol.~1361 of {\em LNCS}, pp.~25--35.
+  {Springer-Verlag}, 1997.
+
+\bibitem[OKST97]{OKS97}
+Wakaha Ogata, Kaoru Kurosawa, Kazue Sako and Kazunori Takatani
+%W. Ogata, K. Kurosawa, K. Sako and K. Takatani
+\newblock Fault Tolerant Anonymous Channel
+\newblock In {\em Information and Communications Security {ICICS}~'97},
+  vol.~1334 of {\em LNCS}, pp.~440--444.
+  {Springer-Verlag}, 1997.
+
+\bibitem[PIK93]{PIK93}
+Choonsik Park, Kazutomo Itoh, and Kaoru Kurosawa.
+%C. Park, K. Itoh, and K. Kurosawa.
+\newblock Efficient anonymous channel and all/nothing election scheme.
+\newblock In {\em Advances in Cryptology --- {EUROCRYPT}~'93},
+  vol.~765 of {\em LNCS}, pp.~248--259.
+  {Springer-Verlag}, 1993.
+
+\bibitem[Ped91]{Ped91}
+Torben~P. Pedersen.
+%T. Pedersen.
+\newblock A threshold cryptosystem without a trusted party (extended
+  abstract).
+\newblock In {\em Advances in Cryptology --- {EUROCRYPT}~'91},
+  vol.~547 of {\em LNCS}, pp.~522--526.
+  {Springer-Verlag}, 1991.
+
+\bibitem[Sak94]{Sak94}
+Kazue Sako.
+%K. Sako.
+\newblock Electronic voting schemes allowing open objection to the tally.
+\newblock In {\em Transactions of IEICE,} vol.~E77-A No.1, Jan.
+  1994.
+
+\bibitem[SK94]{SK94}
+Kazue Sako and Joe Kilian.
+%K. Sako and J. Kilian.
+\newblock Secure voting using partially compatible homomorphisms.
+\newblock In {\em Advances in Cryptology --- {CRYPTO}~'94}, vol.~839
+  of {\em LNCS}, pp.~411--424.
+  {Springer-Verlag}, 1994.
+
+\bibitem[SK95]{SK95}
+Kazue Sako and Joe Kilian.
+%K. Sako and J. Kilian.
+\newblock Receipt-free mix-type voting scheme -- {A} practical solution
+  to the implementation of a voting booth.
+\newblock In {\em Advances in Cryptology --- {EUROCRYPT}~'95},
+  vol.~921 of {\em LNCS}, pp.~393--403.
+  {Springer-Verlag}, 1995.
+
+\bibitem[Sha79]{Sha79}
+Adi Shamir.
+%A. Shamir.
+\newblock How to share a secret.
+\newblock {\em Communications of the ACM}, 22:612--613, 1979.
+
+\end{thebibliography}
+
+\end{document}

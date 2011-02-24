@@ -1,0 +1,2572 @@
+\documentclass{article}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amstext}
+\usepackage{amscd}
+
+
+\newtheorem{defi}{Definition}
+\newtheorem{theo}{Theorem}
+\newtheorem{lem}[theo]{Lemma}
+\newtheorem{cor}[theo]{Corollary}
+\newtheorem{rem}{Remark}
+\newtheorem{con}{Conjecture}
+\newtheorem{prop}[theo]{Proposition}
+
+\def\u{\uparrow}
+\def\d{\downarrow}
+\def\F{{F}}
+\def\D{{D}}
+\def\I{{\cal I}}
+\def\half{\frac{1}{2}}
+\def\ket#1{|\,#1\,\rangle}
+\def\bra#1{\langle\, #1\,|}
+\def\braket#1#2{\langle\, #1\,|\,#2\,\rangle}
+
+\newcommand{\textcirc}{% circle of reasonable size 
+  \setlength{\unitlength}{1.5ex}%
+  \begin{picture}(1.1,1)(-.55,-.55)%
+    \put(0,0){\circle{1.1}}%
+  \end{picture}}
+\newcommand{\defend}{\hspace*{\fill} $\textcirc$}
+\newcommand{\exend}{\hspace*{\fill} $\diamondsuit$}
+\newcommand{\Tr}{{\rm Tr}}
+\newcommand{\HA}{{\cal H}_{{A}}}
+\newcommand{\HB}{{\cal H}_{{B}}}
+\newcommand{\HE}{{\cal H}_{{E}}}
+\newcommand{\oz}{\overline{z}}
+\newcommand{\prob}{{\rm Prob\,}}
+\newcommand{\cd}{{D}}
+\newcommand{\varl}{l}
+\newcommand{\ul}{\underline}
+\newcommand{\noi}{\noindent}
+\newcommand{\cancel}[1]{}
+\newcommand{\canpro}[1]{}
+\newcommand{\vs}[1]{\vspace{#1mm}}
+\newcommand{\vsk}{\vspace{3mm}}
+\newcommand{\vsl}{\vspace{7mm}}
+\newcommand{\ind}{\rule{7mm}{0mm}}
+\newcommand{\rh}[1]{\rule{#1 mm}{0mm}}
+\newcommand{\rv}[1]{\rule{0mm}{#1 mm}}
+\newcommand{\rz}{\rule{0mm}{0mm}}
+\newcommand{\pp}{,\ldots,}
+\newcommand{\be}{\beta}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\beas}{\begin{eqnarray*}}
+\newcommand{\eeas}{\end{eqnarray*}}
+\newcommand{\bece}{\begin{center}}
+\newcommand{\ence}{\end{center}}
+\newcommand{\beit}{\begin{itemize}}
+\newcommand{\enit}{\end{itemize}}
+\newcommand{\nli}{\newline}
+\newcommand{\hyp}{\hyphenation}
+%\newcommand{\mod}{{\rm mod\ }}
+\newcommand{\co}{{\cal O}}
+\newcommand{\lgr}{\langle g\rangle}
+%\newcommand{\proof}{{\it Proof. }}
+\newcommand{\proofend}{\hspace*{\fill} $\Box$\\ \ \\}
+\newcommand{\pe}{\hspace*{\fill} $\Box$\\ \ \\}
+\newcommand{\peon}{\hspace*{\fill} $\Box$\\}
+\newcommand{\DHO}{{\rm DHO}}
+\newcommand{\RSA}{{\rm RSA}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\OC}{{\rm OC}}
+\newcommand{\OCs}{{\rm OCs}}
+\newcommand{\fp}{{\bf F}_p}
+\newcommand{\fq}{{\bf F}_q}
+\newcommand{\CE}{{E}}
+\newcommand{\zn}{({\bf Z}/{n{\bf Z}})^*}
+\newcommand{\znn}{{\bf Z}/{n{\bf Z}}}
+\newcommand{\z}{{\bf Z}}
+\newcommand{\zz}{{\bf Z}}
+\newcommand{\zznn}{{\bf Z}_n}
+\newcommand{\al}{\alpha}
+\newcommand{\fqN}{{\bf F}_{q^N}}
+\newcommand{\fpn}{{\bf F}_{p^n}}
+\newcommand{\fpk}{{\bf F}_{p^k}}
+\newcommand{\fpi}{{\bf F}_{p^i}}
+\newcommand{\fpg}{{\bf F}_{p^g}}
+\newcommand{\fpm}{{\bf F}_{p^m}}
+\newcommand{\fqn}{{\bf F}_{q^n}}
+\newcommand{\fqi}{{\bf F}_{q^i}}
+\newcommand{\fpN}{{\bf F}_{p^N}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\de}{\delta}
+\newcommand{\get}{\tilde{g}}
+\newcommand{\vp}{\varphi}
+\newcommand{\hterm}[1]{\mbox{{\rm hterm(}$#1${\rm )}}}
+\newcommand{\MM}[1]{\mbox{{\rm M(}$#1${\rm )}}}
+\newcommand{\hcoeff}[1]{\mbox{{\rm hcoeff(}$#1${\rm )}}}
+\newcommand{\fei}[2]{\mbox{{\rm #1(}$#1${\rm )}}}
+\newcommand{\DD}{{\bf D}}
+\newcommand{\DO}{{\bf D}_0}
+\newcommand{\PP}{{\bf P}}
+\newcommand{\JJ}{{\bf J}}
+\newcommand{\di}[2]{\mbox{{\rm div(}$#1,#2${\rm )}}}
+\newcommand{\spoly}[2]{\mbox{{\rm s-poly(}$#1,#2${\rm )}}}
+\newcommand{\lcm}[2]{\mbox{{\rm lcm(}$#1,#2${\rm )}}}
+\newcommand{\fzw}[3]{\mbox{{\rm #1(}$#2,#3${\rm )}}}
+\newcommand{\gcdd}[2]{\mbox{{\rm gcd(}$#1,#2${\rm )}}}
+\newcommand{\OO}{{\bf 0}}
+\newcommand{\Op}{{\bf 0}_p}
+\newcommand{\Oq}{{\bf 0}_q}
+%\newcommand{\al}{\alpha}
+%\newcommand{\de}{\delta}
+%\newcommand{\ep}{\epsilon}
+\newcommand{\ga}{\gamma}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\llra}{\longleftrightarrow}
+\newcommand{\Llra}{\Longleftrightarrow}
+\newcommand{\toinf}{\rightarrow\infty}
+\newcommand{\pacc}{p_{a,N}}
+\newcommand{\perr}{p_{\mbox{\scriptsize err}}}
+\newcommand{\bnp}{\mbox{\scriptsize Bin}(N,p)}
+\newcommand{\ww}{\tilde{w}}
+\newcommand{\uq}{U}
+\newcommand{\zq}{V}
+\newcommand{\tx}{\tilde{X}}
+\newcommand{\ty}{\tilde{Y}}
+\newcommand{\tz}{\tilde{Z}}
+\newcommand{\tr}{\tilde{R}}
+%\newcommand{\op}{\oplus}
+\newcommand{\op}{\oplus}
+\newcommand{\oy}{\overline{y}}
+\newcommand{\OX}{\overline{X}}
+\newcommand{\OR}{\overline{R}}
+\newcommand{\OCA}{\overline{C_A}}
+\newcommand{\OCB}{\overline{C_B}}
+\newcommand{\OCE}{\overline{C_E}}
+\newcommand{\OY}{\overline{Y}}
+\newcommand{\OZ}{\overline{Z}}
+\newcommand{\Oz}{\overline{z}}
+\newcommand{\obe}{\overline{\beta}}
+\newcommand{\oga}{\overline{\gamma}}
+\newcommand{\cx}{{\cal X}}
+\newcommand{\hcx}{\hat{{\cal X}}}
+\newcommand{\hcy}{\hat{{\cal Y}}}
+\newcommand{\cy}{{\cal Y}}
+\newcommand{\cz}{{\cal Z}}
+\newcommand{\CX}{{\cal X}}
+\newcommand{\CY}{{\cal Y}}
+\newcommand{\CZ}{{\cal Z}}
+\newcommand{\hX}{\hat{ X}}
+\newcommand{\hY}{\hat{ Y}}
+\newcommand{\hZ}{\hat{ Z}}
+\newcommand{\hz}{\hat{ z}}
+\newcommand{\gd}{\Delta}
+\newcommand{\dq}{\overline{\gd}}
+\newcommand{\cer}{{\cal R}}
+\newcommand{\da}{\downarrow}
+\newcommand{\px}{\overline{P_X}}
+\newcommand{\py}{\overline{P_Y}}
+\newcommand{\din}{d_{\scriptsize ind}(P_{XY})}
+\newcommand{\ida}{I(X;Y\hspace{-1.3mm}\downarrow\hspace{-0.8mm} Z)}
+\newcommand{\idazwei}{I(\OX;Y\hspace{-1.3mm}\downarrow\hspace{-0.8mm} Z)}
+\newcommand{\idadrei}{I(X;\OY\hspace{-1.3mm}\downarrow\hspace{-0.8mm} Z)}
+\newcommand{\penf}{\vspace{-1cm}\hspace*{\fill} $\Box$\\ \ \\}
+\newcommand{\peinf}{\hspace*{\fill} \Box\\ \ \\}
+
+\def\half{\frac{1}{2}}
+ \def\<{\langle}
+ \def\>{\rangle}
+ \def\up{\uparrow}
+ \def\down{\downarrow}
+ \def\lefta{\leftarrow}
+ \def\righta{\rightarrow}
+ \def\opone{\leavevmode\hbox{\small1\kern-3.8pt\normalsize1}}
+ \def\H{{\cal H}}
+ \def\A{{\cal A}}
+ \def\B{{\cal B}}
+ \def\E{{\cal E}}
+ \def\z{{\bar z}}
+ \newcommand{\complex}{{\kern .1em {\raise .47ex\hbox {$\scriptscriptstyle
+ |$}}\kern -.4em {\rm C}}}
+ \newcommand{\real}{{{\rm I} \kern -.19em {\rm R}}}
+\newcommand{\eeq}{\end{equation}}
+ \newcommand{\beqa}{\begin{eqnarray}}
+ \newcommand{\eeqa}{\end{eqnarray}} 
+
+
+\begin{document}
+
+\title{
+\bf Linking Classical and Quantum Key Agreement:
+ Is There a Classical Analog to Bound Entanglement?
+\footnote{Some of the results of this paper already  appeared
+in~\cite{giswol99}, \cite{giswol00}, and~\cite{grw00}.}}
+
+
+
+\author{Nicolas Gisin\, \footnote{Group 
+of Applied Physics, University of Geneva,
+CH-1211 Geneva, Switzerland. E-mail: Nicolas.Gisin@physics.unige.ch}\qquad
+Renato Renner\, \footnote{Computer Science Department, Swiss Federal 
+Institute of Technology (ETH Z\"urich), CH-8092 Zurich, Switzerland.
+E-mail: renner@inf.ethz.ch}\qquad Stefan Wolf\, \footnote{Centre for Applied 
+Cryptographic Research,
+Department of Combinatorics and Optimization,
+University of Waterloo, 
+Waterloo, ON N2L 3G1, Canada. E-mail:
+swolf@cacr.math.uwaterloo.ca}}
+
+
+\date{}
+
+
+
+
+
+
+
+\maketitle
+
+
+
+
+\begin{abstract}
+\noi
+After carrying out a protocol for quantum key agreement over a noisy quantum
+channel, the parties Alice and Bob must process the raw key in order to 
+end up with identical keys
+about which 
+the adversary has virtually no 
+ information. 
+In principle, both classical and quantum protocols can be used for this 
+processing. It is a natural question which type of protocols is more 
+powerful. We show that   the limits of tolerable 
+noise are identical for classical and quantum protocols in many cases. 
+More specifically, we prove that a quantum state between two parties
+is entangled if and only if the classical random variables resulting 
+from optimal measurements provide some mutual classical information 
+between the parties.  
+In addition, we present evidence which strongly suggests that the 
+potentials
+of classical and of quantum protocols are equal in every situation.
+An important consequence, in the purely classical regime, of such a 
+correspondence would be the existence of a classical counterpart
+of so-called bound entanglement, namely 
+``bound information'' that 
+cannot be used for generating a secret key by any protocol. 
+This stands in  contrast to what was previously believed.
+The studied connection between the classical and
+quantum protocols makes it natural to conjecture that (classical and
+quantum) distillability is possible only if single-copy distillability is
+already possible.
+\\ \ \\
+{\bf Keywords.} 
+Secret-key agreement,  intrinsic  information,
+ secret-key rate, purification, entanglement.
+\end{abstract}
+
+
+\newpage
+
+\section{Introduction}
+
+In modern cryptography there are mainly two security paradigms, namely 
+computational and information-theoretic security. The latter is sometimes also 
+called unconditional security. Computational security is based on the 
+assumed hardness of certain computational problems (e.g., the integer-factoring
+or  dis\-crete-logarithm problems). However, since a computationally 
+sufficiently powerful adversary can solve any computational
+ problem, hence break any 
+such system, and because no useful general lower bounds are known in complexity 
+theory, computational
+ security is always conditional and, in addition to this, in danger by  progress
+in the theory of efficient algorithms as well as in hardware engineering 
+(e.g., quantum computing). 
+Information-theoretic security on the other hand is based on probability 
+theory and on the fact that an adversary's information is limited.
+Such a limitation can for instance come from noise in communication 
+channels or from the laws of quantum mechanics. 
+
+Many different cryptographic settings 
+based on  noisy channels have been 
+described and analyzed. Examples are  Wyner's wire-tap channel~\cite{wyner75},
+Csisz\'ar and K\"orner's broadcast channel~\cite{csikor78}, or 
+Maurer's model of  key agreement from joint randomness~\cite{ka},\,
+ \cite{ittrans}. 
+
+
+Quantum cryptography on the other hand lies in the intersection of two of the 
+major scientific achievements of the 20th century, namely quantum physics and 
+information theory. Various protocols for so-called quantum
+key agreement have been proposed  (e.g., \cite{BB84},\, \cite{ekert}), 
+and
+the possibility and impossibility of 
+such key agreement in different settings has been 
+studied by many authors. 
+
+
+
+The goal of this paper is to derive parallels between classical and 
+quantum key agreement
+and thus to show that the two paradigms are 
+more closely related  than previously recognized.
+These connections allow for  investigating questions and  solving
+open problems of purely classical information theory with quantum-mechanic
+methods. 
+One of the possible consequences is that, in contrast to what was 
+previously believed, there exists a classical counterpart to so-called
+{\em bound entanglement\/} (i.e., entanglement that cannot be purified by any quantum
+protocol), namely mutual  information between Alice and Bob 
+which they cannot use for generating a secret key by any classical protocol.
+
+
+
+The outline of this paper is as follows. In Section~\ref{models} we introduce 
+the classical (Section~\ref{classical}) and quantum (Section~\ref{quantum})
+models 
+of information-theoretic key agreement
+and the crucial  concepts and quantities, such as  secret-key 
+rate and intrinsic information on one side, and measurements,
+entanglement, and quantum
+purification on the other.
+In Section~\ref{linking} we show the mentioned links between these two 
+models, more precisely, between entanglement and intrinsic information
+(Section~\ref{linkingone}) as well as between quantum purification
+and the secret-key rate (Section~\ref{prot}).
+We illustrate the statements and their consequences with a number of examples
+(Sections~\ref{exampleseins} and~\ref{exampleszwei}). 
+In Section~\ref{secbii} we define and characterize the classical 
+counterpart of bound entanglement, called bound intrinsic information. 
+We show that 
+not only   
+problems  in classical information theory can be 
+addressed by quantum-mechanical methods, but that the inverse is also  true:
+In Section~\ref{linkingmeasure}
+we propose a new measure for entanglement  
+based on the intrinsic information measure.
+
+
+
+The results of Section~3 already appeared in~\cite{giswol99} 
+and~\cite{giswol00}. Proposition~\ref{prop1} in Section~4 was 
+proved in~\cite{grw00}, whereas the other  results in Section~4 
+have not been  published previously. 
+
+
+
+
+
+
+
+
+
+\section{Unconditionally Secure Key Agreement}
+\label{models}
+
+
+Shannon~\cite{shannon} has defined an encryption scheme to be 
+{\em perfectly secret\/}
+if the ciphertext does not reveal 
+any information about the encrypted message. Such a system 
+is  unconditionally secure with respect to a ciphertext-only 
+attack; in particular, an exhaustive search over the key space is 
+of no help for finding the cleartext. Shannon 
+proved in the same paper that, unfortunately, such a high level of secrecy has
+its price: it is, roughly spoken, only possible between parties
+who share an information-theoretically secure key that is at least 
+as long as the message to be encrypted. The so-called {\em one-time
+pad\/}~\cite{vernam26}, a computationally very simple encryption 
+that just bit-wisely XORs the key to the message, on the other 
+hand shows that perfectly secure encryption is possible between parties
+who do share a key of that length. Since we assume that insecure 
+channels are always available, the one-time pad  reduces the problem
+of information-theoretically secure encryption to 
+information-theoretically secure {\em key agreement}, which we will 
+consider in the following.
+
+
+
+
+\subsection{Information-Theoretic Key Agreement from Classical and Quantum 
+Information}
+
+We assume 
+ that two parties Alice and Bob, who  are connected by an authentic 
+but otherwise completely insecure channel,  are willing to generate a
+secret key. More precisely,
+Alice and Bob want to compute, after some rounds of communication
+(where the random variable $C$ summarizes the communication 
+carried out over the public channel), strings $S_A$ and $S_B$, respectively,
+with the property that they are most likely
+both equal to a uniformly distributed 
+string $S$ about which the adversary Eve has virtually no information.
+More precisely, 
+\begin{equation}\label{iss}
+\prob[S_A=S_B=S]\geq 1-\ep\ ,\ \ H(S)=\log_2|{\cal S}|
+\ ,\ \ \mbox{and}\ \ I(S;C)<\ep
+\end{equation}
+(where ${\cal S}$ is the range of $S$ and $|{\cal S}|$ is its cardinality)
+should hold for some small~$\ep$. 
+Note that the security condition in  (\ref{iss}) is 
+information-theoretic (sometimes also called unconditional): Even 
+an adversary with unlimited computer power must be unable to 
+obtain  useful information. In contrast to this, 
+the Diffie-Hellman protocol~\cite{difhel76}
+for instance achieves the goal of key agreement by insecure communication
+only with respect to  computationally bounded adversaries. 
+
+It is a straight-forward generalization of Shannon's mentioned
+impossibility result that information-theoretic 
+secrecy cannot be generated in this setting, i.e., 
+ from authenticity only: Public-key 
+systems are never unconditionally secure.
+Hence we have to assume some additional structure in the initial
+setting, for 
+instance some pieces of information given to Alice and Bob (and also Eve),
+respectively.
+
+
+
+
+
+\subsection{Classical Information}\label{classical}
+
+The general case where this information given to the three parties initially 
+consists of the outcomes of some random experiment has been studied 
+intensively~\cite{ka},\, 
+\cite{ittrans},\, \cite{diss}. Here, it is assumed that 
+Alice, Bob, and Eve have access to realizations of random
+variables $X$, $Y$, and $Z$, respectively, 
+jointly distributed according to $P_{XYZ}$.
+A special case is 
+when all the parties receive noisy versions of a (binary)
+signal broadcast 
+by some information source. 
+
+It was shown that if the setting is modified
+this way
+(where the secrecy condition in (\ref{iss}) must be replaced by 
+$I(S;CZ)<\ep$), then secret-key agreement is often  possible. Shannon's 
+pessimistic result now generalizes to the statement that the size 
+of the resulting secret key $S$ cannot  exceed the quantity
+\[
+I(X;Y\downarrow Z):=\min_{XY\rightarrow Z\rightarrow \overline{Z}} I(X;Y|\OZ)
+\]
+(where the minimum is taken over all Markov chains 
+$XY\rightarrow Z\rightarrow \overline{Z}$)
+which was defined in~\cite{ittrans} as the {\em intrinsic
+conditional information between $X$ and $Y$, given $Z$}.
+
+In the special case where the parties' initial information consists of the 
+outcomes of many independent repetitions of the same random experiment
+given
+by $P_{XYZ}$
+(i.e., Alice knows $X^N:=[X_1,X_2,\ldots,X_N]$, and similarly for 
+Bob and Eve),
+the {\em secret-key rate\/} $S(X;Y||Z)$ was defined as the 
+maximal
+ key-generation rate (measured with respect 
+to the number of required  realizations of $P_{XYZ}$)  that is 
+ asymptotically achievable (for $N\rightarrow\infty$). The above-mentioned 
+result then implies
+\[
+S(X;Y||Z)\leq \ida\ ,
+\]
+and it was conjectured that intrinsic information can always be distilled 
+into a secret key, i.e., that $\ida>0$ implies $S(X;Y||Z)>0$~\cite{ittrans},\, 
+\cite{diss}. 
+This conjecture was supported by some evidence given in~\cite{ittrans};
+however,
+it is the objective of this paper to give much stronger evidence 
+for the opposite, i.e., that there exist types of intrinsic information
+{\em not\/} allowing for secret-key agreement. The motivation for the 
+corresponding considerations comes from quantum mechanics or,  more 
+precisely, from the concept of {\em bound entanglement\/} in 
+quantum information theory.
+
+
+
+
+
+\subsection{Quantum Information}\label{quantum}
+
+When considering the model where certain pieces of information 
+are given initially to the involved parties, it is a natural 
+question where this information comes from. According to Landauer,
+information is always physical and hence ultimately quantum 
+mechanical~\cite{landau98},\, \cite{landau96}. 
+Thus the random variables could come from measuring 
+a certain quantum state $|\Psi\rangle$. In this case however
+it seems to be overly restrictive to force Alice and Bob to measure 
+their quantum systems right at the beginning of the key-agreement 
+process. It is possibly  advantageous for them to 
+carry out a protocol first (using classical communication and local
+quantum operations on their systems) after which they end up 
+with a ``quantum key,'' i.e., a number of quantum bits in a 
+maximally entangled state. Measuring them finally 
+leads to a (classical) secret key. The first phase of this protocol
+is called {\em quantum (entanglement) purification}.
+
+In order to understand what happens in  a purification protocol
+and for which initial states such a protocol is at all possible, we 
+recall some basic facts about quantum (information) theory. 
+In contrast to a classical 
+bit ({\em Cbit\/} for short) which can take either 
+of the values $0$ or $1$, a quantum bit ({\em Qbit\/})
+can exist in a superposition of these two extremal states
+(with complex {\em probability amplitudes\/} $a$ and $b$ satisfying 
+$|a|^2+|b|^2=1$):
+\[
+|\psi\rangle = a|0\rangle +b|1\rangle\ .
+\]
+When measuring this state with respect to the basis $\{|0\rangle,|1\rangle\}$,
+we obtain $|0\rangle$ with probability $|a|^2$ and $|1\rangle$ otherwise.
+All  (pure) states of one Qbit can  be represented 
+as unit vectors in the Hilbert space ${\bf C}^2$.
+
+A possible state of a system of two Qbits can be 
+\[
+|\psi\rangle= |\psi_1\rangle\otimes|\psi_2\rangle=:|\psi_1\psi_2\rangle\ ,
+\]
+which is simply the tensor product of the states 
+$|\psi_1\rangle$ and $|\psi_2\rangle$ of the 
+first and second Qbit, respectively. 
+Such a state is called a {\em product state}.
+However, (normalized) 
+linear combinations of quantum states lead to additional states;
+for instance,
+\[
+|\psi^{-}\rangle:=\left(|01\rangle -|10\rangle\right)/\sqrt{2}
+\]
+is also a  possible state of the two-Qbit system.
+This state 
+is called {\em singlet state\/} and 
+has the property that whenever the Qbits are measured with 
+respect to the same basis, the outcomes are opposite bits. 
+There is no classical explanation for this behavior which
+ is called 
+{\em (maximal) entanglement}. We conclude that two Qbits are not the same 
+as ``two times one Qbit.''
+
+
+As described above, the objective of Alice and Bob  doing quantum 
+purification is to generate two-Qbit systems in the state $|\psi^{-}\rangle$
+(or in states very close to it) by classical communication and local 
+quantum operations. The states they start with can for instance be their 
+view of a pure state $|\Psi\rangle$ living in Alice's, Bob's, and a 
+possible adversary Eve's (who is assumed to have total control over 
+the entire environment) Hilbert spaces:
+\[
+|\Psi\rangle\in\HA\otimes \HB\otimes\HE\ .
+\]
+In analogy to Alice and Bob's marginal distribution $P_{XY}$ in the 
+classical setting, one can define Alice and Bob's view of the state 
+$|\Psi\rangle$, the so-called {\em trace over the environment $\HE$},
+\[
+\rho_{AB}:=\Tr_{\HE}(|\Psi\rangle)\ .
+\]
+The state $\rho_{AB}$
+is generally a {\em mixed state}. In contrast to a pure state, which can be 
+represented by a vector in a Hilbert space, a mixed state 
+is described by a probability distribution over such a space.
+A mixed state, such as $\rho_{AB}$, can be represented by a
+$(\dim \HA)\cdot (\dim \HB)\times(\dim \HA)\cdot (\dim \HB)$ matrix, 
+namely the weighted sum (with respect to the probability distribution)
+of the projectors to the 
+subspaces generated by the 
+corresponding pure states. This matrix is 
+called {\em density matrix}.
+
+It is important to note that ``purification,'' which transforms the mixed 
+state $\rho_{AB}$ into pure (singlet) states, actually 
+means key agreement: 
+ Alice and Bob's  final state is pure and hence not entangled 
+with anything else, in particular not with anything under Eve's control.
+The adversary is out of the picture, whatever 
+operations and measurements she performs.
+
+
+
+
+Let us consider some properties of mixed states. A state $\rho_{AB}$
+which is {\em separable}, i.e., a mixture of product states, can be prepared
+remotely by purely classical communication.
+States that are not separable are called {\em entangled\/} and cannot 
+be prepared this way.
+It is a natural question which states $\rho_{AB}$ {\em can be purified\/} and 
+which cannot. Separable states cannot be purified because of the property 
+just described and because of the generalization of Shannon's theorem
+mentioned at he beginning of this paper: No information-theoretic 
+key agreement is possible from authentic but public (classical)
+communication. On the other hand, if Alice's
+and Bob's subsystems  are two-dimensional\footnote{The same is even true
+if one of the spaces has dimension two and the other one has dimension
+three.} (i.e., Qbits) and entangled, 
+then purification is always possible~\cite{hohoho97}. 
+However, the surprising fact was 
+recently discovered that the same is not true for higher-dimensional 
+systems: There exist entangled states which cannot be 
+purified~\cite{HorodeckiPartialTransp}. 
+(This follows from the fact that the eigenvalues of the 
+so-called  partial transposition of  certain entangled density 
+matrices $\rho_{AB}$ are  non-negative~\cite{Peres}.)
+This type of entanglement is 
+called {\em bound\/} (in contrast to {\em free\/} entanglement, which 
+{\em can\/} be purified).
+>From the perspective of classical information theory,
+the interesting point is that  
+bound entanglement seems to have a classical 
+counterpart with unexpected properties.
+
+
+
+
+
+
+
+
+\section{Linking Classical and Quantum Key Agreement}
+\label{linking}
+
+In this section we derive a close connection 
+ between the possibilities offered by classical
+and quantum protocols for key agreement. The intuition is as follows. 
+First of all,
+there is a very natural connection between quantum states $\Psi$ 
+ and 
+classical distributions $P_{XYZ}$ which 
+can be thought of as arising from $\Psi$
+by measuring in a certain basis, e.g., the standard basis\footnote{A 
+priori, there is no
+privileged basis. However,  physicists often write states like $\rho_{AB}$ in a
+basis which seems to be more natural than others. 
+We refer to this   as the standard
+basis. Somewhat surprisingly, this basis is generally easy to identify,
+though not precisely defined. One could  characterize the
+standard basis as the basis for which as many coefficients as possible 
+of $\Psi$ are
+real and positive.
+We usually represent quantum states with respect to the standard basis.}.
+Such a measurement
+leads to 
+classical information with some 
+probability distribution depending on the quantum state. 
+In the following, we assume that Eve 
+is free  
+to carry out so-called {\em generalized measurements\/} (POVMs)~\cite{Peresbook}. In other words,
+the set $\{|z\rangle\}$ will not be  assumed to be an orthonormal
+ basis, but any set generating the Hilbert space
+$\HE$ and satisfying the condition
+$\sum_z|z\rangle\langle z|=\opone_{\HE}$. 
+Then, if  the three parties carry out measurements in certain 
+bases $\{|x\rangle\}$ and
+$\{|y\rangle\}$, and in the set $\{|z\rangle\}$, respectively, 
+they end up with the classical scenario 
+$P_{XYZ}=|\langle x,y,z|\Psi\rangle|^2$. 
+
+
+When given a state $\Psi$ between three parties 
+Alice, Bob, and Eve, 
+and if $\rho_{AB}$ denotes the resulting mixed state  after  Eve is traced out,
+then the corresponding classical distribution $P_{XYZ}$
+will have positive intrinsic information if and only if 
+$\rho_{AB}$ is entangled. However, 
+this correspondence clearly depends on the measurement bases used by Alice, Bob, and Eve.
+If for instance $\rho_{AB}$ is entangled, but Alice and Bob do very unclever
+measurements, then the intrinsic information may vanish. 
+If on the other hand $\rho_{AB}$ is 
+separable, Eve may do such bad measurements that the intrinsic information
+becomes positive, despite the fact that $\rho_{AB}$ could have
+been established by public discussion without any prior correlation 
+(see Example~4). 
+Consequently, the correspondence between
+intrinsic information and entanglement must involve some optimization over all
+possible measurements on all sides.
+
+A similar  correspondence on the protocol level is supported 
+by many examples, but not  rigorously proven:
+The distribution $P_{XYZ}$ allows for classical key agreement if and 
+only if quantum key agreement is possible starting from the state $\rho_{AB}$.
+
+We show how these parallels allow for addressing problems
+of purely classical information-theoretic nature 
+with the methods of quantum information theory, and vice versa.
+
+
+
+\subsection{Entanglement and Intrinsic Information}
+\label{linkingone}
+
+Let us first establish the connection between intrinsic information
+and entanglement.   Theorem~\ref{theoeins} states  that if 
+ $\rho_{AB}$ is separable, then Eve can ``force'' the  information
+between
+   Alice's and Bob's classical random variables (given Eve's classical random variable) 
+to be zero (whatever strategy Alice and Bob use\footnote{The statement of 
+Theorem~\ref{theoeins} also holds when Alice and Bob are allowed to do 
+generalized measurements.}). 
+   In particular, Eve can prevent classical key agreement. 
+
+
+
+\begin{theo}\label{theoeins}
+Let $\Psi\in\HA\otimes\HB\otimes\HE$ and $\rho_{AB}=\Tr_{\HE}(P_{\Psi})$.
+If $\rho_{AB}$ is separable,
+then there exists a generating set $\{|z\rangle\} $ of $\HE$  such that
+for all bases $\{|x\rangle\} $ and $\{|y\rangle\} $ of $\HA$ and $\HB$,
+respectively,
+$I(X;Y|Z)=0$
+holds for 
+ $P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle |^2$.
+\end{theo}
+
+
+\noi
+\proof
+If $\rho_{AB}$ is separable, then there exist vectors $|\alpha_z\rangle$ and
+$|\beta_z\rangle$
+such that
+$
+\rho_{AB}=\sum_{z=1}^{n_z} p_z
+P_{\alpha_z}\otimes P_{\beta_z}
+$,
+where $P_{\alpha_z}$ denotes the one-dimensional projector onto the subspace spanned
+by $|\alpha_z\rangle$.
+
+Let us first assume that $n_z\le \dim\HE$.
+Then there exists a basis $\{|z\rangle\}$ of $\HE$ such that 
+$
+\Psi=\sum_z \sqrt{p_z}\, |\alpha_z,\beta_z,z\rangle 
+$
+holds~\cite{qp9609013},\, 
+\cite{gisin89},\, \cite{hjw93}.
+
+If $n_z> \dim\HE$, then Eve can add an auxiliary system $\H_{aux}$
+to hers (usually called an {\em ancilla\/}) and we have
+$
+\Psi\otimes|\gamma_0\rangle=\sum_z \sqrt{p_z}\,
+|\alpha_z,\beta_z,\gamma_z\rangle
+$,
+where $|\gamma_0\rangle\in\H_{aux}$ is the state of Eve's auxiliary
+system, and 
+$\{|\gamma_z\rangle\}$ is a basis of $\HE\otimes\H_{aux}$.
+We define the (not necessarily orthonormalized) vectors $|z\rangle$ by 
+$|z,\gamma_0\rangle=\opone_{\HE}\otimes P_{\gamma_0}|\gamma_z\rangle$.
+These vectors determine a generalized measurement with positive operators
+$O_z=|z\rangle\langle z|$.
+Since $\sum_zO_z\otimes
+P_{\gamma_0}=\sum_z|z,\gamma_0\rangle\langle z,\gamma_0|
+=\sum_z\opone_{\HE}\otimes
+P_{\gamma_0}|\gamma_z\rangle\langle\gamma_z| \opone_{\HE}\otimes
+P_{\gamma_0}
+=\opone_{\HE}\otimes P_{\gamma_0}$, the $O_z$ satisfy
+$\sum_zO_z=\opone_{\HE}$, as 
+they should in order to define a generalized measurement \cite{Peresbook}.
+Note that the first case ($n_z\le \dim\HE$) is a special case of the
+second one, with $|\gamma_z\rangle=|z,\gamma_0\rangle$.
+If Eve now performs the measurement, then we have $P_{XYZ}(x,y,z)=|\langle
+x,y,z|\Psi\rangle |^2
+=|\langle x,y,\gamma_z|\Psi,\gamma_0\rangle |^2$, and
+\[
+P_{XY|Z}(x,y,z)=|\langle x,y|\alpha_z,\beta_z\rangle |^2
+=|\langle x|\alpha_z\rangle |^2\, |\langle y|\beta_z\rangle
+|^2=P_{X|Z}(x,z)P_{Y|Z}
+(y,z)
+\]
+holds for all $|z\rangle$ and for all
+$|x,y\rangle \in\HA\otimes\HB$. Consequently, $I(X;Y|Z)=0$.
+\peon 
+\ 
+
+Theorem~\ref{theozwei} states that 
+ if $\rho_{AB}$ is  entangled,
+   then Eve {\em cannot\/} force the intrinsic information to be zero: Whatever
+   she does (i.e., whatever generalized measurements she carries out), there 
+   is something Alice and Bob can do such that the intrinsic information
+   is positive. Note that this does {\em not}, a priori, imply that secret-key
+   agreement is possible in every case. Indeed, we will provide 
+   evidence for the fact that this implication does generally {\em not\/}
+   hold.    
+
+\begin{theo}\label{theozwei}
+Let $\Psi\in\HA\otimes\HB\otimes\HE$ and $\rho_{AB}=\Tr_{\HE}(P_{\Psi})$.
+If $\rho_{AB}$ is entangled,
+then for all generating sets $\{|z\rangle\} $ of $\HE$, 
+there are bases $\{|x\rangle\} $ and $\{|y\rangle\} $ of $\HA$ and $\HB$, 
+respectively,
+such that
+$I(X;Y\down Z)>0$
+holds for
+ $P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle |^2$.
+\end{theo}
+
+\noi
+\proof
+We prove this by contradiction.
+Assume 
+that there exists a generating set $\{|z\rangle\}$ of $\HE$ such that for 
+all bases $\{|x\rangle\}$ of $\HA$ and $\{|y\rangle\}$ of $\HB$,
+we have $I(X;Y\down Z)=0$  for the resulting distribution. 
+For such a distribution,  there exists a channel, characterized by
+$P_{\OZ|Z}$,
+such that $I(X;Y|\OZ)=0$ holds, i.e., 
+\begin{equation}
+P_{XY|\OZ}(x,y,\overline{z})=P_{X|\OZ}(x,\overline{z})P_{Y|\OZ}(y,\overline{z})\ .
+\label{pbar}
+\end{equation}
+Let 
+$
+\rho_{\overline{z}}
+:=(1/p_{\overline{z}})\sum_z p_z P_{\OZ|Z}(\overline{z},z)P_{\psi_z}
+$,
+$p_z=P_Z(z)$,
+and
+$
+p_{\overline{z}}=\sum_z P_{\OZ|Z}(\overline{z},z)p_z,
+$
+where $\psi_z$ is the state of Alice's and Bob's system conditioned on Eve's
+result $z$:
+$\Psi\otimes|\gamma_0\rangle=\sum_z\psi_z\otimes|\gamma_z\rangle$
+(see the proof of Theorem~1).
+
+ From (\ref{pbar}) we can conclude
+$
+\Tr(P_x\otimes P_y\rho_{\overline{z}})=\Tr(P_x\otimes \opone\rho_{\bar
+z})\, \Tr(\opone\otimes P_y\rho_{\overline{z}})
+$
+for all one-dimensional
+ projectors $P_x$ and $P_y$ acting in $\HA$ and $\HB$,
+respectively.
+Consequently, the states $\rho_{\overline{z}}$ are products, i.e., 
+$
+\rho_{\overline{z}}=\rho_{\alpha_{\overline{z}}}\otimes\rho_{\beta_{\overline{z}}},
+$
+and $\rho_{AB}=\sum_\z p_\z \rho_\z$ is separable.
+\peon \ 
+
+
+Theorem~\ref{theozwei} can be formulated in a more 
+positive way. Let us first 
+introduce the concept of a set of bases 
+$(\{|x\rangle\}_j,\{|y\rangle\}_j)$,
+where the $j$
+   label the different bases, as they are used in the 4-state (2 bases) and
+   the 6-state (3 bases) protocols~\cite{BB84},\, \cite{Dagmar6state},\, \cite{bg}. 
+Then if $\rho_{AB}$ is entangled there exists a set
+$(\{|x\rangle\}_j,\{|y\rangle\}_j)_{j=1,\ldots,N}$
+ of $N$
+bases such that for all generalized measurements $\{|z\rangle\}$,
+$
+I(X;Y\down [Z,j])>0
+$
+holds.
+The idea is that Alice and Bob randomly choose a basis and, after the
+transmission, publicly restrict to the (possibly few) cases where they
+happen to have
+chosen the same basis. Hence Eve knows $j$, and one has
+\[
+I(X;Y\down [Z,j])=\frac{1}{N}\sum_{j=1}^N I(X^j;Y^j\down Z)\ .
+\]
+If the set of bases is large enough, then for all $\{|z\rangle\}$
+ there is a basis with
+positive intrinsic information, 
+hence the mean is also positive. 
+Clearly, this result is 
+stronger if the set of bases is small. 
+Nothing is proven about 
+the achievable size of such sets of bases, but it is conceivable that
+$\max\{\dim\HA,\dim\HB\}$
+ bases
+are always sufficient.
+
+It is important to note in this context that when the measurements 
+are actually carried out by the parties, then Alice and Bob can 
+obtain positive intrinsic information only  if Eve cannot 
+choose her measurement basis adaptively 
+(i.e., {\em after\/} learning what bases
+Alice and Bob have used). 
+
+
+\begin{cor}\label{coreinszwei}
+Let $\Psi\in\HA\otimes\HB\otimes\HE$ and $\rho_{AB}=\Tr_{\HE}(P_{\Psi})$.
+Then the following statements
+are equivalent:
+\\ \ \\
+\quad
+{\it (i)}
+$\rho_{AB}$ is entangled,
+\\ \ \\
+\quad
+{\it (ii)}
+for all generating sets $\{|z\rangle\}$ of $\HE$, there exist bases
+$\{|x\rangle\}$ of $\HA$ and 
+$\{|y\rangle\}$ of  $\HB$ such that the 
+distribution  $P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle|^2$ satisfies 
+$\ida>0$,
+\\ \ \\
+\quad
+{\it (iii)}
+for all generating sets  $\{|z\rangle\}$ of $\HE$, there exist bases
+$\{|x\rangle\}$ of $\HA$
+and $\{|y\rangle\}$ of  $\HB$ such that the 
+distribution  $P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle|^2$ satisfies 
+$I(X;Y|Z)>0$.
+\end{cor}
+
+
+A first consequence of the fact that the statement of 
+Corollary~\ref{coreinszwei} often holds
+with respect to the standard bases (see below) is that it yields, at least 
+in the binary case, a criterion for $\ida>0$ that is efficiently verifiable 
+since it is based on the positivity of the eigenvalues of 
+the partial transpose of the density matrix, i.e., of 
+a $4\times 4$ matrix. 
+Previously, the quantity $\ida$ has been considered hard to handle.
+
+
+
+
+
+\subsection{Examples I}
+\label{exampleseins}
+
+The following examples illustrate the correspondence established in 
+Section~\ref{linkingone}. 
+They show in particular that very
+often (Examples 1, 2, and
+3), but not always (Example 4), the direct connection between 
+entanglement and positive intrinsic information holds with respect 
+to the standard bases (i.e., the bases physicists use by commodity
+and intuition).
+Example~1 was already analyzed in~\cite{giswol99}. 
+The  examples of this section will be  discussed further   in 
+Section~\ref{exampleszwei} under the aspect of the existence of key-agreement 
+protocols in the classical and quantum regimes.
+\ \\
+
+
+
+\noi
+{\it Example 1.}
+Let us consider the  so-called 4-state  protocol
+of~\cite{BB84}.
+The analysis of the  6-state protocol~\cite{bg} is analogous and leads to similar
+results. 
+We compare  the possibility of 
+quantum and classical key agreement given the 
+quantum state and the corresponding classical distribution, respectively, arising 
+from this protocol. The conclusion 
+is, under the assumption of incoherent eavesdropping, that key 
+agreement in one setting is possible if and only if this is true 
+also for the other. 
+
+After carrying out the 4-state protocol, and under the assumption of 
+optimal  eavesdropping (in terms of Shannon information), the resulting 
+quantum state is~\cite{FGGNP}
+{\small
+\[
+\Psi=\sqrt{F/2}\, |0,0\rangle\otimes \xi_{00}+\sqrt{D/2}\, |0,1\rangle\otimes  \xi_{01}+\sqrt{D/2}\, |1,0\rangle\otimes  \xi_{10}+
+\sqrt{F/2}\, |1,1\rangle\otimes  \xi_{11}\ ,
+\]
+}where $D$ (the {\em disturbance\/}) is the probability that $X\ne Y$ holds if
+ $X$ and $Y$ are the classical random variables of Alice and Bob, respectively,
+where $F=1-D$ (the {\em fidelity\/}),
+and where the $\xi_{ij}$ satisfy $\langle \xi_{00}|\xi_{11}\rangle=
+\langle \xi_{01}|\xi_{10}\rangle=1-2D$ and $\langle \xi_{ii}|\xi_{ij}\rangle=0$
+for all $i\ne j$. Then the state $\rho_{AB}$ is (in the  basis
+$\{\ket{00}$,\, $\ket{01}$,\, $\ket{10}$,\, $\ket{11}\}$)
+{\small
+\[
+\rho_{AB}=\frac{1}{2}\left(
+\begin{array}{cccc}
+\D & 0 & 0 & -\D(1-2D) \\
+0 & 1-D & -(1-D)(1-2D) & 0\\
+0 & -(1-D)(1-2D) & 1-D & 0\\
+-\D(1-2D) & 0 & 0 & \D
+\end{array}
+\right)
+\]
+}and its partial transpose
+{\small
+\[
+\rho_{AB}^t=
+\frac{1}{2}\left(
+\begin{array}{cccc}
+\D & 0 & 0 & -(1-D)(1-2D) \\
+0 & 1-D & -\D(1-2D) & 0 \\
+0 & -\D(1-2D) & 1-D & 0 \\
+-(1-D)(1-2D)  & 0 & 0 & \D
+\end{array}
+\right)
+\]
+}has the eigenvalues $(1/2)(D\pm(1-D)(1-2D))$ and $(1/2)((1-D)\pm D(1-2D))$, which are 
+all non-negative (i.e., $\rho_{AB}$ is separable) if
+\begin{equation}\label{coeins}
+D\geq 1-\frac{1}{\sqrt{2}}\ .
+\end{equation}
+
+
+
+>From the classical viewpoint, the corresponding distributions (arising
+ from measuring the above quantum system in the standard bases) 
+are as follows. 
+First, $X$ and $Y$ are both symmetric bits with $\prob[X\ne Y]=\cd$. 
+Eve's random variable $Z=[Z_1,Z_2]$ is composed of 2 bits $Z_1$ and $Z_2$,
+where $Z_1=X\oplus Y$, i.e., $Z_1$ tells Eve whether Bob received the qubit
+disturbed ($Z_1=1$) 
+or not ($Z_1=0$) (this is a consequence of the fact that the $\xi_{ii}$ and
+$\xi_{ij}$ ($i\ne j$) states
+ generate orthogonal sub-spaces), and where
+the probability that Eve's second bit indicates the correct value
+of Bob's bit 
+is
+Prob$[Z_2=Y]=\delta=(1+\sqrt{1-\langle \xi_{00}|\xi_{11}\rangle^2})/2=1/2+\sqrt{D(1-D)}$. 
+We now prove that for this distribution, 
+the intrinsic information is zero 
+if and only if 
+\begin{equation}\label{bsbed}
+\frac{\cd}{1-\cd}\geq 2\sqrt{(1-\de)\de}=1-2D
+\end{equation}
+holds. 
+We show that if the condition (\ref{bsbed})
+ is 
+satisfied, then $\ida=0$ holds. 
+The inverse implication follows from the existence of a key-agreement 
+protocol in all other cases (see Example~1 (cont'd) in Section~\ref{exampleszwei}).
+If  (\ref{bsbed})  holds, we can construct a random variable $\OZ$,
+that is generated by sending $Z$ over a channel characterized by
+$P_{\OZ|Z}$,  for which  $I(X;Y|\OZ)=0$ holds. 
+We can restrict ourselves to the case of equality  in (\ref{bsbed})
+because Eve can always increase $\de$ by adding noise. 
+
+Consider now the channel characterized by the following conditional 
+distribution
+$P_{\OZ|Z}$ (where $\overline{{\cal Z}}=\{u,v\}$):
+\begin{eqnarray*}
+P_{\OZ|Z}(u,[0,0])&  =&  P_{\OZ|Z}(v,[0,1]) = 1\ ,\\
+ P_{\OZ|Z}(l,[1,0]) &   = &   P_{\OZ|Z}(l,[1,1])  =  1/2
+\end{eqnarray*}
+for $l\in\{u,v\}$.
+We show $I(X;Y|\OZ)={\rm E}_{\OZ}\, [I(X;Y|\OZ=\oz)]=0$, i.e., that 
+$I(X;Y|\OZ=u)=0$ and $I(X;Y|\OZ=v)=0$ hold. By symmetry it is sufficient 
+to show the first equality. For  $a_{ij}:=P_{XY\OZ}(i,j,u)$, we get
+\begin{eqnarray*}
+a_{00} &   = & (1-D)(1-\de)/2\, ,\\
+a_{11}&  = & (1-D)\de/2\, ,\\ 
+a_{01}&  = &  a_{10}\ =\ 
+(D(1-\de)/2+D\de/2)/2=D/4\, .
+\end{eqnarray*}
+>From  equality  in (\ref{bsbed})  we conclude 
+$
+a_{00}a_{11}=a_{01}a_{10}
+$,
+which is equivalent to the fact that $X$ and $Y$ are independent, given
+$\OZ=u$.
+
+Finally, note that the conditions (\ref{coeins}) and (\ref{bsbed}) are 
+equivalent for $D\in [0,1/2]$. This shows that the bounds of tolerable noise
+are indeed  the same for the quantum and classical scenarios.
+\exend
+\\ \
+
+\noi
+{\it Example 2.}
+We consider the bound entangled state presented in~\cite{HorodeckiPartialTransp}. This
+example received quite a lot of attention by the quantum-information community
+because it was the first known example of bound entanglement (i.e., entanglement without
+the possibility of
+quantum key agreement). We show that 
+its classical counterpart seems to have similarly surprising properties.
+ Let $0<a<1$ and
+\begin{eqnarray*}
+\Psi & = & \sqrt{\frac{3a}{8a+1}}\, \psi\otimes|0\rangle  +
+\sqrt{\frac{1}{8a+1}}\, \phi_a\otimes|1\rangle  + \\
+&& \qquad
++\sqrt{\frac{a}{8a+1}}\, (|122\rangle +|133\rangle +|214\rangle +|235\rangle +|326\rangle )\ ,
+\end{eqnarray*}
+where $\psi=(|11\rangle +|22\rangle +|33\rangle )/\sqrt{3}$ and 
+$
+\phi_a=\sqrt{(1+a)/2}\, |31\rangle +\sqrt{(1-a)/2}\, |33\rangle.
+$
+It has been shown in~\cite{HorodeckiPartialTransp} that the resulting state 
+$\rho_{AB}$
+is entangled.
+
+The
+corresponding classical
+distribution is 
+ as follows. The ranges are
+$
+\CX=\CY=\{1,2,3\}$ and $\CZ=\{0,1,2,3,4,5,6\}
+$.
+We write
+$
+(ijk)=P_{XYZ}(i,j,k)
+$.
+Then we have
+$
+(110)=(220)=(330)=(122)=(133)=(214)=(235)=(326)  =  2a/(16a+2)$,
+$(311)  =  (1+a)/(16a+2)$, and 
+$(331)  =  (1-a)/(16a+2)$.
+We study the special case $a=1/2$. Consider the following representation
+of the resulting distribution (to be normalized).
+For instance,
+the entry ``$(0)\ 1\ ,\ (1)\ 1/2$'' for $X=Y=3$  means 
+$P_{XYZ}(3,3,0)=1/10$ (normalized),
+$P_{XYZ}(3,3,1)=1/20$,
+and  $P_{XYZ}(3,3,z)=0$ for all $z\not\in\{0,1\}$.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\hline
+\ \ X & 1 & 2 & 3\\
+Y (Z) &&&\\
+\hline\hline
+1 & (0)\ 1 & (4)\ 1 & (1)\ 3/2\\
+\hline
+2 & (2)\ 1 & (0)\ 1 & (6)\ 1\\
+\hline
+3 & (3)\ 1 & (5)\ 1 & (0)\ 1\\
+&&& (1)\ 1/2\\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+As we would expect, the  intrinsic information is positive 
+in this scenario. This can be seen by contradiction as follows. 
+Assume $\ida=0$. Hence there exists a discrete channel, characterized
+by the conditional distribution $P_{\OZ|Z}$, such that $I(X;Y|\OZ)=0$ holds.
+Let $\overline{\CZ}\subseteq {\bf N}$
+be the range of $\overline{Z}$, and let
+$
+P_{\OZ|Z}(i,0)  =:  a_i$,
+$P_{\OZ|Z}(i,1)  =:  x_i$,
+$P_{\OZ|Z}(i,6)  =:  s_i$.
+Then we must have 
+$a_i,x_i,s_i\in [0,1]$ and 
+$\sum_i{a_i}=\sum_i{x_i}=\sum_i{s_i}=1$.
+Using  $I(X;Y|\OZ)=0$, we obtain the following distributions 
+$P_{XY|\OZ=i}$ (to be normalized):
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\hline
+\ \ X & 1 & 2 & 3\\
+Y  &&&\\
+\hline\hline
+1 & $a_i$ & $\frac{3a_ix_i}{2s_i}$ & $\frac{3x_i}{2}$\\
+\hline
+2 & $\frac{2a_is_i}{3x_i}$ & $a_i$ & $s_i$\\
+\hline
+3 & $\frac{2a_i(a_i+x_i/2)}{3x_i}$ & $\frac{a_i(a_i+x_i/2)}{s_i}$ & 
+$a_i+\frac{x_i}{2}$\\
+\hline
+\end{tabular}
+\end{center}
+By comparing the $(2,3)$-entries of the two tables above, we obtain
+\begin{equation}\label{drei}
+1\geq\sum_i{\frac{a_i(a_i+x_i/2)}{s_i}}\ .
+\end{equation}
+
+We  prove that  (\ref{drei}) 
+implies $s_i\equiv a_i$ (i.e., $s_i =a_i$ for all $i$) and $x_i\equiv 0$. 
+Clearly, this 
+does not lead to a solution and is hence
+a 
+contradiction. For instance,
+$
+P_{XY|\OZ=i}(1,2)=2a_is_i/3x_i
+$
+is not even defined in this case if $a_i>0$.
+
+It remains to show that  (\ref{drei})
+implies $a_i\equiv s_i$ and $x_i\equiv 0$. We show that 
+whenever $\sum_i{a_i}=\sum_i{s_i}=1$ and $a_i\not\equiv s_i$, then
+$
+\sum_i{a_i^2/s_i}>1\ .
+$
+First, note that $\sum_i{a_i^2/s_i}=\sum_i{a_i}=1$ for $a_i\equiv s_i$.
+Let now $s_{i_1}\leq a_{i_1}$ and $s_{i_2}\geq a_{i_2}$. We show that 
+$
+a_{i_1}^2/s_{i_1}+a_{i_2}^2/s_{i_2}<a_{i_1}^2/(s_{i_1}-\ep)+a_{i_2}^2/(s_{i_2}+\ep)
+$
+holds for every $\ep>0$,
+which obviously  implies  the above statement. It is  straightforward 
+to see that this
+ is equivalent to
+$
+a_{i_1}^2s_{i_2}(s_{i_2}+\ep)>a_{i_2}^2s_{i_1}(s_{i_1}-\ep),
+$
+and holds because of
+$
+a_{i_1}^2s_{i_2}(s_{i_2}+\ep)>a_{i_1}^2a_{i_2}^2$ and 
+$
+a_{i_2}^2s_{i_1}(s_{i_1}-\ep)<a_{i_1}^2a_{i_2}^2
+$.
+This concludes the proof of  $\ida>0$.
+\exend
+\ \\
+
+As mentioned,
+the interesting point about Example~2 is that the quantum state is
+bound entangled, and that also classical key agreement seems 
+impossible despite the fact that $\ida>0$ holds. This is a  contradiction 
+ to a conjecture stated in~\cite{ittrans}. 
+The classical translation of the bound entangled state leads to a classical 
+distribution with very strange properties as well! (See 
+Example~2 (cont'd) in Section~\ref{exampleszwei}).
+
+In
+Example~3, another  bound entangled state (first proposed in~\cite{dreih}) is discussed. 
+The example  is particularly 
+nice because, depending on the choice of a parameter $\al$, the quantum 
+state can be made separable, bound entangled, and free entangled.
+\\ 
+
+
+
+
+\noi
+{\it Example 3.}
+We consider the following  distribution (to be normalized).
+Let $0\leq \al \leq 3$.
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\hline
+\ \ X & 1 & 2 & 3\\
+Y (Z) &&&\\
+\hline\hline
+1 & (0)\ 2 & (4)\ $5-\al$ & (3)\ $\al$\\
+\hline
+2 & (1)\ $\al$ & (0)\ 2 & (5)\ $5-\al$\\
+\hline
+3 & (6)\ $5-\al$ & (2)\ $\al$ & (0)\ 2\\
+\hline
+\end{tabular}
+\end{center}
+This distribution arises when measuring the following quantum state.
+Let 
+$
+\psi:=(1/\sqrt{3})\, (|11\rangle+|22\rangle+|33\rangle).
+$
+Then 
+\begin{eqnarray*}
+\Psi_{\al} & = & \sqrt{\frac{2}{7}}\, \psi\otimes|0\rangle + 
+\sqrt{\frac{a}{21}}\, (|12\rangle\otimes|1\rangle+|23\rangle\otimes|2\rangle
++|31\rangle\otimes|3\rangle)\\
+&& 
++ 
+\sqrt{\frac{5-\al}{21}}\, (|21\rangle\otimes|4\rangle 
++|32\rangle\otimes|5\rangle
++|13\rangle\otimes|6\rangle),\qquad\quad\mbox{and}\\
+\rho_{AB} & = & \frac{2}{7}\, P_{\psi} + \frac{\al}{21}\, 
+(P_{12}+P_{23}+P_{31}) + \frac{5-\al}{21}\, (P_{21}+P_{32}+P_{13})
+\end{eqnarray*}
+is separable if and only if $\al\in[2,3]$, bound entangled for $\al\in [1,2)$, 
+and 
+free entangled if $\al\in[0,1)$~\cite{dreih} (see Figure~\ref{qcw}).
+
+Let us consider the quantity $\ida$. First of all, it is clear that 
+$\ida=0$ holds for $\al\in[2,3]$. The reason is that 
+$
+\al\geq 2$ and $5-\al\geq 2
+$
+together imply that Eve can ``mix'' her symbol $Z=0$ with the remaining 
+symbols  in such a way that when given that $\OZ$ takes the ``mixed value,'' then
+$XY$ is uniformly distributed; in particular, $X$ and $Y$ are 
+independent. Moreover, it can be shown in analogy to 
+Example 2 that $\ida>0$ holds for  $\al<2$.
+\exend
+\\ \
+
+
+
+Examples~1, 2, and~3 suggest that the correspondence between separability
+and entanglement on one side and vanishing and non-vanishing intrinsic 
+information on the other always holds with respect to the standard bases
+or even arbitrary bases.
+This is however not true in general: 
+Alice and Bob as well as Eve can perform bad measurements 
+and give away an initial advantage. 
+The following is   a simple example where 
+measuring in the standard basis is a bad choice for Eve.
+\\ \
+
+\noi
+{\it Example 4.}
+Let us consider the quantum states
+\begin{eqnarray*}
+\Psi &  = &  \frac{1}{\sqrt{5}}\, (|00+01+10\rangle \otimes|0\rangle  + |00+11\rangle \otimes|1\rangle )\ ,\\
+\rho_{AB}&  =&  \frac{3}{5}\,  P_{|00+01+10\rangle } + \frac{2}{5}\,  P_{|00+11\rangle }\ .
+\end{eqnarray*}
+If Alice, Bob, and Eve measure in the standard bases, we get the classical distribution 
+ (to be normalized)
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\ \ X & 0 & 1\\
+Y (Z) &&\\
+\hline\hline
+0 & (0)\ 1 & (0)\ 1 \\
+ &  (1)\ 1 & (1)\ 0 \\
+\hline
+1 & (0)\ 1 & (0)\ 0 \\
+  & (1)\ 0 & (1)\ 1\\
+\hline
+\end{tabular}
+\end{center}
+For this distribution, $\ida>0$ holds. Indeed, 
+even $S(X;Y||Z)>0$ holds.
+This is not surprising since both $X$ and $Y$ 
+are binary, and since the described parallels suggest that in this 
+case, positive intrinsic information implies that a secret-key 
+agreement protocol exists. 
+
+The proof of $S(X;Y||Z)>0$ in this situation is analogous to the proof of this 
+fact in Example~3. The protocol consists of Alice and Bob independently 
+making their bits symmetric. Then the repeat-code protocol can be 
+applied. 
+
+However, the 
+partial-transpose condition shows that $\rho_{AB}$ is separable. This 
+means that measuring in the standard basis is bad for Eve. Indeed,
+let us rewrite $\Psi$ and $\rho_{AB}$ as
+\begin{eqnarray*}
+\Psi &  = &   \sqrt{\Lambda}\, |m,m\rangle \otimes|\tilde 0\rangle + 
+     \sqrt{1-\Lambda}\, |-m,-m\rangle \otimes|\tilde 1\rangle\ ,\\
+\rho_{AB} &   =&   \frac{5+\sqrt{5}}{10}\,  P_{|m,m\rangle } + 
+         \frac{5-\sqrt{5}}{10}\,  P_{|-m,-m\rangle }\ ,
+\end{eqnarray*}
+where
+$\Lambda  =  (5+\sqrt{5})/10$, 
+$|m,m\rangle  =  |m\rangle \otimes|m\rangle$,
+$|\pm m\rangle  =  \sqrt{(1\pm\eta)/2}\, |0\rangle  \pm \sqrt{(1\mp\eta)/2}\, |1\rangle$, and 
+$\eta  =  1/\sqrt{5}$.
+
+In this representation, $\rho_{AB}$ is obviously separable. It also means that 
+ Eve's optimal measurement basis is
+\[
+|\tilde 0\rangle =\sqrt{\Lambda}\, |0\rangle  - \frac{1}{\sqrt{5\Lambda}}\, |1\rangle \ ,\ \ 
+|\tilde 1\rangle =-\sqrt{1-\Lambda}\, |0\rangle  - \frac{1}{\sqrt{5(1-\Lambda)}}\, |1\rangle\ . 
+\]
+Then, $\ida=0$ holds for the resulting classical distribution.
+\exend
+\ \\
+
+
+
+  \subsection{A Classical Measure for Quantum Entanglement}
+\label{linkingmeasure}
+
+It is a
+challenging problem
+of theoretical quantum physics to find good measures for entanglement~\cite{qp9610044}.
+Corollary~\ref{coreinszwei} above
+   suggests the following measure,  which is based on
+    classical information theory. 
+\begin{defi}
+{\rm
+Let for a quantum state $\rho_{AB}$
+\[
+\mu(\rho_{AB}):= \min_{\{|z\rangle\}}\, (\max_{\{|x\rangle\},\{|y\rangle\}}\, (\ida))\ ,
+\]
+where the minimum is taken over all $\Psi=\sum_z\sqrt{p_z}\psi_z\otimes|z\rangle $
+such that
+$\rho_{AB}=\Tr_{\HE}(P_{\Psi})$ holds
+and over all generating sets 
+ $\{|z\rangle\}$ of $\HE$, the maximum is over all bases $\{|x\rangle\}$
+of $\HA$ and $\{|y\rangle\}$
+of $\HB$, and where
+$P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle |^2$.
+}
+\defend
+\end{defi}
+
+The function $\mu$ has all the properties required from such a measure.
+If $\rho_{AB}$ is pure, i.e., $\rho_{AB}=|\psi_{AB}\rangle\langle\psi_{AB}|$, 
+then we have  in the Schmidt
+basis (see for example~\cite{Peresbook}) 
+$\psi_{AB}=\sum_j c_j |x_j,y_j\rangle $, and
+$\mu(\rho_{AB})=-\Tr(\rho_A\log\rho_A)$ (where 
+$\rho_A=\Tr_B(\rho_{AB})$)
+ as it should~\cite{qp9610044}.
+It is obvious that $\mu$ is convex, i.e., 
+$\mu(\lambda\rho_1+(1-\lambda)\rho_2)\le\lambda\mu(\rho_1)+(1-\lambda)\mu(
+\rho_2)$.
+\\ \
+
+\noi
+{\it Example~5.} 
+This example is   based on Werner's states.
+Let
+$
+\Psi=\sqrt{\lambda}\, \psi^{(-)}\otimes|0\rangle  +
+\sqrt{(1-\lambda)/4}\, |001+012+103+114\rangle
+$,
+where $\psi^{(-)}=|10-01\rangle /\sqrt{2}$, and $\rho_{AB}=\lambda P_{\psi^{(-)}} +
+((1-\lambda)/4)\opone$.
+It is well-known that $\rho_{AB}$ is separable if and only if 
+ $\lambda\le 1/3$.
+Then the classical distribution is $P(010)=P(100)=\lambda/2$ and 
+$P(001)=P(012)=P(103)=P(114)=(1-\lambda)/4$.
+
+
+
+
+If $\lambda\le1/3$, then consider the channel
+$P_{\OZ|Z}( 0,0)=
+P_{\OZ|Z}(  2,2)=
+P_{\OZ|Z}(  3,3)=1\, ,\ 
+P_{\OZ|Z}(  0,1)=
+P_{\OZ|Z}(  0,4)=\xi\, ,\ 
+P_{\OZ|Z}(  1,1)=
+P_{\OZ|Z}(  4,4)=1-\xi\, ,
+$ 
+where $\xi=2\lambda/(1-\lambda)\le 1$. 
+Then  $\mu(\rho_{AB})=\ida=I(X;Y|\OZ)=0$ holds, as it should.
+
+If $\lambda>1/3$, then consider the (obviously optimal) channel
+$P_{\OZ|Z}(  0,0)=
+P_{\OZ|Z}(  2,2)=
+P_{\OZ|Z}(  3,3)=
+P_{\OZ|Z}(  0,1)=
+P_{\OZ|Z}(  0,4)=1
+$.
+Then
+\begin{eqnarray*}
+\mu(\rho_{AB}) & = & \ida=I(X;Y|\OZ)=P_{\OZ}(0)\cdot I(X;Y|\OZ=0)\\
+& = & \frac{1+\lambda}{2}\cdot 
+(1-q\log_2 q-(1-q)\log_2(1-q))\ ,
+\end{eqnarray*}
+where $q=2\lambda/(1+\lambda)$.
+\exend
+
+
+  \subsection{Classical Protocols and Quantum Purification}\label{prot}
+
+It is a natural question  whether the analogy between entanglement and
+intrinsic information (see Section~\ref{linkingone}) carries over to the 
+protocol level. The examples given in Section~\ref{exampleszwei} support this 
+belief.
+A quite interesting and surprising consequence 
+ would be that there exists a classical counterpart to bound 
+entanglement, namely intrinsic information that cannot be distilled 
+into a secret key by any classical protocol, if $|\cx|+|\cy|> 5$,
+where $\cx$ and $\cy$ are the ranges of $X$ and $Y$, respectively.
+In other words, the conjecture in~\cite{ittrans}  that such
+information can always be distilled would be {\em proved\/} for 
+$|\cx|+|\cy|\leq 5$, but {\em disproved\/} otherwise. 
+
+\begin{con}\label{conprot}
+Let $\Psi\in\HA\otimes\HB\otimes\HE$ and $\rho_{AB}=\Tr_{\HE}(P_{\Psi})$.
+Assume that  for all generating sets  $\{|z\rangle\}$ of $\HE$ there 
+are bases $\{|x\rangle\}$ and $\{|y\rangle\}$ of $\HA$ and $\HB$, respectively, 
+such that 
+$
+S(X;Y||Z)>0
+$
+holds for the distribution $P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle|^2$.
+Then quantum purification is possible with the state $\rho_{AB}$, 
+i.e., $\rho_{AB}$ is free entangled.
+\end{con}
+
+\begin{con}
+Let $\Psi\in\HA\otimes\HB\otimes\HE$ and $\rho_{AB}=\Tr_{\HE}(P_{\Psi})$.
+Assume that  there exists a  generating set $\{|z\rangle\}$ of $\HE$
+such that for all 
+ bases $\{|x\rangle\}$ and $\{|y\rangle\}$ of $\HA$ and $\HB$, respectively, 
+$
+S(X;Y||Z)=0
+$
+holds for the distribution $P_{XYZ}(x,y,z):=|\langle x,y,z|\Psi\rangle|^2$.
+Then quantum purification is impossible with the state $\rho_{AB}$, 
+i.e., $\rho_{AB}$ is bound entangled or  separable.
+\end{con}
+
+
+
+
+
+
+  \subsection{Examples II}
+\label{exampleszwei}
+
+The following examples 
+support  Conjectures~1 and~2 and illustrate  their
+ consequences.
+We consider mainly the same distributions as in Section~\ref{exampleseins},
+but this time under the aspect of the existence of classical and quantum 
+key-agreement protocols. 
+\\ \
+
+
+
+
+
+
+\noi
+{\it Example 1 (cont'd).}
+We have shown in Section~\ref{exampleseins} that the 
+resulting quantum state is entangled if and only if the intrinsic information
+of the corresponding classical situation (with respect to the standard 
+bases) is non-zero. Such a correspondence also holds on the 
+protocol level. First of all, it is clear  for the quantum state that 
+QPA is possible whenever the state is entangled because  both $\HA$ and $\HB$
+have dimension two.
+On the other hand,  the same is also true for 
+the corresponding classical situation, i.e.,  secret-key agreement is possible 
+whenever
+$
+\cd/(1-\cd)<2\sqrt{(1-\de)\de}
+$
+holds, i.e., if the intrinsic information is positive.
+The necessary protocol includes an interactive phase, called
+{\em advantage distillation}, based on a repeat code or 
+on parity checks (see~\cite{ka}
+or~\cite{diss}). 
+\exend
+\ \\ 
+
+
+\noi
+{\it Example 2 (cont'd).}
+ The quantum state $\rho_{AB}$ in this example  is bound
+entangled, meaning that the entanglement cannot be used for QPA. Interestingly,
+but not surprisingly given the discussion above, the corresponding classical 
+distribution has the property that $\ida>0$, but nevertheless, all the known 
+classical advantage-distillation protocols~\cite{ka},\,  \cite{ittrans}
+ fail for this distribution! It seems
+that $S(X;Y||Z)=0$ holds (although it is not clear  how this fact could 
+be rigorously proven).
+\exend
+\\ \
+
+\noi
+{\it Example 3 (cont'd).}
+ We have seen already
+that for $2\leq \al\leq 3$, the quantum state is separable and the 
+corresponding classical distribution (with respect to the standard bases)
+has vanishing intrinsic information. Moreover, it has been shown that for the
+quantum situation, $1\leq \al<2$ corresponds to bound entanglement, 
+whereas for $\al<1$, QPA is possible and allows
+for generating  a secret key~\cite{dreih}. We describe a classical 
+protocol here which suggests
+that the situation for the classical translation of the scenario
+is totally analogous: The  
+protocol allows classical key agreement exactly for $\al<1$. 
+However, this does not imply (although it appears very plausible) that 
+no classical protocol exists at all for the case $\al\geq 1$.
+
+Let $\al<1$. We consider the following protocol for classical key agreement.
+First of all, Alice and Bob both restrict their ranges to $\{1,3\}$ (i.e.,
+publicly reject a realization unless $X\in\{1,3\}$ and  $Y\in\{1,3\}$). 
+We will later call this a {\em binarization\/} of the corresponding 
+random variables and show that this concept  is of great importance 
+in the context of possibility and impossibility of secret-key 
+agreement, both classical and quantum.
+
+The
+resulting distribution is as follows (to be normalized):
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\ \ X & 1 & 3\\
+Y (Z) &&\\
+\hline\hline
+1 & (0)\ 2 & (4)\ $\al$ \\
+\hline
+3 & (2)\ $5-\al$& (0)\ 2 \\
+\hline
+\end{tabular}
+\end{center}
+Then, Alice and Bob both send their bits locally over channels $P_{\OX|X}$
+and $P_{\OY|Y}$, respectively, such that the resulting bits $\OX$ and 
+$\OY$ are symmetric. The channel $P_{\OX|X}$ [$P_{\OY|Y}$] sends $X=0$
+[$Y=1$] to $\OX=1$ [$\OY=0$] with probability $(5-2\al)/(14-2\al)$, and
+leaves $X$ [$Y$] unchanged otherwise. The  distribution $P_{\OX\OY Z}$ is then
+{\small
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\ \ $\OX$ & 1 & 3\\
+$\OY$ (Z) &&\\
+\hline\hline
+ & (0)\ $2\cdot\frac{9}{14-2\al}$ & (1)\ $\al$\\
+1 & (2)\ $(5-\al)\cdot\frac{9}{14-2\al}\cdot\frac{5-2\al}{14-2\al}$ 
+& (2)\ $(5-\al)\left(\frac{5-2\al}{14-2\al}\right)^2$ \\
+& & (0)\ $2\cdot2\cdot\frac{5-2\al}{14-2\al}$\\
+\hline
+3 & (2)\ $(5-\al)\left(\frac{9}{14-2\al}\right)^2$ & (0)\ $2\cdot 
+\frac{9}{14-2\al}$ \\
+&& (2)\ $(5-\al)\cdot \frac{9}{14-2\al}\cdot \frac{5-2\al}{14-2\al}$\\
+\hline
+\end{tabular}
+\end{center}
+}
+
+It is not difficult to see that for $\al<1$, we have 
+$
+\prob[\OX= \OY]>1/2
+$
+and that, given that $\OX=\OY$ holds, Eve has no information at all about
+what this bit is. This means that  the repeat-code protocol 
+mentioned in Example~1
+allows for classical key agreement in this situation~\cite{ka},\, \cite{diss}. 
+For $\al\geq 1$, classical key agreement, like quantum key
+agreement, seems impossible however.
+We will discuss this further in Section~\ref{secbii}.
+The results of Example~3 are illustrated in Figure~\ref{qcw}.
+\begin{figure}[!h]
+\hbox{
+\centerline{
+\psfig{figure=qcw.eps,width=8cm}}}
+\caption{The Results of Example 3}
+\label{qcw}
+\end{figure}
+\exend
+\\ \ 
+
+
+
+
+\section{Bound Intrinsic Information and Binarizations}\label{secbii}
+
+Conjecture~\ref{conprot} suggests that, in contrast to previous 
+beliefs in classical information theory, bound entanglement has a 
+classical counterpart, which we call {\em bound information}.
+
+
+\begin{defi}
+{\rm
+Let $P_{XYZ}$ be a  distribution with $\ida>0$. Then if $S(X;Y||Z)>0$
+holds for this distribution, the intrinsic information between $X$ and $Y$,
+given $Z$, is called {\em free}. Otherwise, if $S(X;Y||Z)=0$, the 
+intrinsic information is called {\em bound}.
+}
+\defend
+\end{defi}
+
+
+We are now interested in a proof of the existence of such bound information.
+In view of the fact that Conjecture~\ref{conprot} might be hard to prove 
+in general, it is worth to look at a classical ``translation'' of a 
+bound entangled quantum state directly and analyze it with the tools 
+of classical information theory. 
+
+This analysis shows that an important concept 
+in the context of key agreement from classical information are so-called
+{\em binarizations}. We give evidence for the fact that classical 
+information can be used for key agreement only if the random variables 
+$X$ and $Y$ can be made binary by local operations (i.e., by sending 
+them over some binary-output channel) in such a way that the resulting 
+{\em binary\/} random variables still share some information. The quantum
+counterpart of this insight may result in an easy characterization 
+and better understanding of the strange phenomenon of bound entanglement.
+
+Let is look at the states $\Psi_{\al}$ of Example~3 again. 
+First, we prove that whenever the random variable $Y$ is ``binarized,''
+i.e., sent through a binary-output channel $P_{\OY|Y}$ (or a ternary-output
+channel but where only two symbols are actually
+ considered in the computation of the mutual information), then the intrinsic 
+information vanishes (Proposition~\ref{prop1}).
+
+Proposition~\ref{prop2}
+ on the other hand suggests that intrinsic information which 
+does not resist any binarization must be bound: Whenever secret-key agreement 
+is possible with $X$ and  $Y$ and with respect to $Z$, then there exist 
+binarizations of 
+a certain number of 
+repetitions of $X$ and $Y$ such that the 
+intrinsic information remains positive. 
+
+
+
+
+\begin{prop}\label{prop1}
+Assume  the  distribution of Example~3 with
+ $\al\in[1,2)$.
+Let $P_{\OY|Y}$ be an arbitrary conditional distribution with
+$\overline{\CY}=\{0,1,\gd\}$, and let 
+$\CE$ be the event that $\OY\in\{0,1\}$.
+Then $I(X;\OY\downarrow Z\, |\, \CE)=0$.
+\end{prop}
+
+\proof
+We only have to consider the case $\alpha=1$. This implies the statement for 
+all $\al\in[1,2)$. Let the following channel $P_{\OY|Y}$ be given (where
+$\overline{\CY}=\{0,1,\gd\}$):
+\begin{eqnarray*}
+P_{\OY|Y}(0,1)&=&x\ ,\ \ P_{\OY|Y}(0,2)\ =\ y\ ,\ \ P_{\OY|Y}(0,3)\ =\ z\ ,\\
+P_{\OY|Y}(1,1)&=&u\ ,\ \ P_{\OY|Y}(1,2)\ =\ v\ ,\ \ P_{\OY|Y}(1,3)\ =\ w\ .\\
+\end{eqnarray*}
+Here, we have $x,y,z,u,v,w,x+u,y+v,z+w\in[0,1]$. We get the 
+following distribution $P_{X\OY Z|\CE}$ (to be normalized).
+\\
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\hline
+\ \ $X$ & $1$ & $2$ & $3$\\
+$\OY$ ($Z$) &&&\\
+\hline\hline
+ & (0)\ $2x$ & (0)\ $2y$ & (0)\ $2z$\\
+0 & (3)\ $y$ & (1)\ $4x$ & (2)\ $x$\\
+  & (5)\ $4z$ & (6)\ $z$ & (4)\ $4y$\\
+\hline
+& (0)\ $2u$ & (0)\ $2v$ & (0)\ $2w$\\
+1 & (3)\ $v$ & (1)\ $4u$ & (2)\ $u$\\
+  & (5)\ $4w$ & (6)\ $w$ & (4)\ $4v$\\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+The only symbol $z$ of $Z$ for which $I(X;\OY|Z=z,\CE)>0$ holds is $z=0$.
+Let us now consider a channel $P_{\OZ|Z}$ with $\overline{\CZ}=\{\overline{0}, 
+\overline{1}, \overline{2}, \overline{3}, \overline{4}, \overline{5}, 
+\overline{6}\}$ and $P_{\OZ|Z}(0,0)=1$. Furthermore,
+ $P_{\OZ|Z}(\overline{0},1)=c$ and $P_{\OZ|Z}(\overline{1},1)=1-c$,
+and analogously for $Z=2,3,4,5$, and $6$
+with transition
+probabilities $e,a,f,b$, and $d$, respectively. Then we get for the 
+column vectors of the $P_{X\OY|\OZ=\overline{0}}$ matrix:
+\[
+\left[
+2{x \choose u}+a{y \choose v}+4b{z \choose w}\, ,\,
+ 4c{x \choose u}+2{y \choose 
+v}+d{z \choose w}\, ,\, e{x \choose u}+4f{y \choose v}+2{z \choose w}
+\right].
+\]
+Clearly, the three vectors are linearly dependent. We can assume  that 
+\[
+{x \choose u}=\lambda_1{y \choose v}+\lambda_2{z \choose w}
+\]
+holds for some $\lambda_1,\lambda_2\in[0,\infty)$.
+(The other cases are analogous.) 
+
+Let $\vec{s}:={y \choose v}$ and $\vec{t}:={z \choose w}$.
+We then get for the above matrix 
+\[
+\left[
+(a+2\lambda_1)\vec{s}+(4b+2\lambda_2)\vec{t}, 
+(2+4c\lambda_1)\vec{s}+(d+4c\lambda_2)\vec{t},
+(4f+e\lambda_1)\vec{s}+(2+e\lambda_2)\vec{t}\, 
+\right].
+\]
+The corresponding distribution satisfies $I(X;\OY|\OZ=\overline{0},\CE)=0$
+if 
+\[
+\frac{a+2\lambda_1}{4b+2\lambda_2}=\frac{2+4c\lambda_1}{d+4c\lambda_2}
+=\frac{4f+e\lambda_1}{2+e\lambda_2}
+\]
+holds. This is equivalent  to 
+\begin{eqnarray*}
+\lambda_1(2d-16bc)+\lambda_2(4ac-4) & = & 8b-ad\ ,\\
+\lambda_1(4-4be)+\lambda_2(ae-8f) & = & 16bf-2a\ .
+\end{eqnarray*}
+%
+We show that this system is solvable, with $(a,b,c,d,e,f)\in[0,1]^6$, for all 
+$\lambda_1,\lambda_2\in[0,\infty)$. For this, we prove that for all
+sufficiently large numbers $R>0$, the equations are solvable 
+for all pairs $(\lambda_1,\lambda_2)$
+on the path $(0,0)$-$(R,0)$-$(R,R)$-$(0,R)$-$(0,0)$, 
+and that the corresponding path in $[0,1]^6$ is homeomorphic to $S^1$.
+Then the claim follows by a simple topological argument.
+
+We only sketch the remainder of the proof.
+For $(\lambda_1,\lambda_2)=(0,0)$, the equations are solvable by setting
+\begin{equation}\label{nullnull}
+d=f=1\mbox{\ \ and\ \ }8b=d\ .
+\end{equation}
+For $(\lambda_1,\lambda_2)=(R,0)$, where we assume $R$ to be sufficiently
+ large, a solution is given by
+\[
+b\approx e\approx 1\mbox{\ \ and\ \ }d\approx 8c 
+\] 
+(where additionally both equations of (\ref{nullnull}) should {\em not\/} 
+be satisfied nor approximately satisfied).
+For $(\lambda_1,\lambda_2)=(R,R)$, the equalities are 
+\begin{eqnarray*}
+R(2d-16bc+4ac-4) & = & 8b-ad\\
+R(4-4be+ae-8f) & = & 16bf-2a
+\end{eqnarray*}
+with a possible approximate solution
+\[
+b\approx e\approx 0\ ,\ \ c\approx d\approx 1\ ,\ \ a\approx f\approx 1/2\ .
+\]
+Finally, the case $(\lambda_1,\lambda_2)=(0,R)$ can be  solved by
+\[
+a\approx c\approx 1\mbox{\ \ and\ \ }e\approx 8f\ .
+\]
+When combining the solutions for the different cases, it is not difficult 
+to see that there exists a path
+$\gamma$ in $[0,1]^6$ that, mapped to the $(\lambda_1,\lambda_2)$ plane,
+exactly corresponds to the square $(0,0)$-$(R,0)$-$(R,R)$-$(0,R)$-$(0,0)$.
+This is true for all sufficiently large 
+$R$, and thus the argument is finished.
+\peon
+
+
+
+\begin{prop}\label{prop2}
+  Let $X$, $Y$ and $Z$ be random variables with $S(X;Y\|Z)>0$.
+  Then for each $\varepsilon>0$ there exist a number $N$ and
+  ternary-output channels $P_{\overline{X}|X^N}$ and $P_{\overline{Y}|Y^N}$ with
+  ranges $\overline{\mathcal{X}} = \overline{\mathcal{Y}} = \{0, 1, \Delta\}$
+  such that
+  \begin{eqnarray}
+{\rm Prob}[E'] & > & 0\\
+    P[\overline{X} = \overline{Y} | E] & > & 1-\varepsilon \label{eq:skcond1} \\
+    P[\overline{X} = 0 | E'] = P[\overline{X} = 1 | E'] & = & 1/2 \label{eq:skcond2}\\
+    H(\overline{X} | Z^N, E) & > & 1-\varepsilon \label{eq:skcond3}
+  \end{eqnarray}
+  where $E$ and $E'$ are the events defined by $\overline{X} \neq \Delta
+  \neq \overline{Y}$ and $\overline{X} = \overline{Y} \neq \Delta$, respectively (note
+  that $E' = E \cap [\overline{X} = \overline{Y}]$). In particular, we have 
+$I(\OX;\OY\downarrow Z^N,E)>0$.
+\end{prop}
+
+
+
+\proof
+  According to the definition of the secret-key rate, for each
+  $\varepsilon'$ there exist a number $N$ and a protocol that allows
+  Alice and Bob for computing keys $S_A, S_B \in \{0,1\}^K$ out of
+  $N$ realizations of the random variables $X$ and $Y$ such that
+  \begin{eqnarray}
+    P[S_A \neq S_B] & < & \varepsilon' \label{eq:skorg1} \\
+    H(S_A | Z^N C) & > & K - \varepsilon' \label{eq:skorg2}
+  \end{eqnarray}
+  where $C$ is the communication exchanged over the public channel.
+  Let  $S'_A$ and $S'_B$ to be the
+  first bit of $S_A$ and $S_B$, respectively. It is clear from
+  (\ref{eq:skorg1}) that
+  \begin{equation} \label{eq:bcond1}
+    P[S'_A \neq S'_B] < \varepsilon' 
+  \end{equation}
+  and from (\ref{eq:skorg2})
+  \begin{equation} \label{eq:bcond2}
+    H(S'_A | Z^N C) = H(S_A | Z^N C) - H(S_A | S'_A Z^N C) 
+      > K - \varepsilon' - (K-1) = 1- \varepsilon'.
+  \end{equation}
+  Define the functions
+  \begin{equation}
+    e: c \mapsto P[S'_A \neq S'_B | C=c]
+  \end{equation}
+  and 
+  \begin{equation}
+    k:  c \mapsto 1- H(S'_A | Z^N, C=c).
+  \end{equation}
+  From conditions (\ref{eq:bcond1}) and (\ref{eq:bcond2}) we have that
+  $E_C[e(C)] < \varepsilon'$ and $E_C[k(C)] < \varepsilon'$ (where
+  $E_C$ is the expectation value over all possible communications $c \in
+  \mathcal{C}$). Since both $e$ and $k$ only take on positive values,
+  it follows immediately that $P[e(C) < 2\varepsilon']\geq 1/2$ and
+  $P[k(C) < 2\varepsilon']\geq 1/2$, which implies that there exists a
+  particular communication string 
+$c \in \mathcal{C}$ such that $e(c) < 2\varepsilon'$
+  and $k(c) < 2\varepsilon'$, or
+  \begin{eqnarray} 
+    P[S'_A \neq S'_B | C=c] & < & 2 \varepsilon' \label{eq:optc1} \\
+    H(S'_A | Z^N, C=c) & > & 1-2\varepsilon' \label{eq:optc2}.
+  \end{eqnarray}
+  
+  In general, a secret-key agreement protocol consists of $2M$ steps
+  (where $M$ is itself a random variable) such that in each step Alice
+  sends the information $C_i$ to Bob (for $i$ odd) or Bob sends $C_i$
+  to Alice (for $i$ even). After this communication phase, Alice and
+  Bob compute their secret-key bits $S'_A$ and $S'_B$, respectively. We
+  thus have
+  \begin{eqnarray*}
+      P_{S'_AS'_BC|X^NY^N}
+ &   = &
+      P_{S'_A|X^N C} \cdot P_{S'_B|Y^N C} \cdot 
+      P_{C_{2M}|C^{2M-1} Y^N} \cdot P_{C_{2M-1}|C^{2M-2} X^N}\cdot  \\
+      && \qquad \ldots\cdot 
+      P_{C_2|C_1 Y^N} \cdot P_{C_1|X^N}
+  \end{eqnarray*}
+  (the arguments are omitted in this expression), where $C^i := C_1
+  \cdots C_i$ and $C := C^{2M}$. When the terms are rearranged, 
+this expression
+  can be written as
+  \begin{equation}
+      P_{S'_AS'_BC|X^NY^N}(s_A, s_B, c, x, y) 
+    = 
+      p_A(s_A, c, x) \cdot p_B(s_B, c, y) 
+  \end{equation}
+  for appropriate functions $p_A$ and $p_B$.  For a communication string $c \in
+  \mathcal{C}$ satisfying (\ref{eq:optc1}) and (\ref{eq:optc2}), we define
+  \begin{eqnarray}
+    P_{\overline{X}'|X^N} (\overline{x}', x) := p_A(\overline{x}', c, x) \\
+    P_{\overline{Y}'|Y^N} (\overline{y}', y) := p_B(\overline{y}', c, y)
+  \end{eqnarray}
+  for all $\overline{x}', \overline{y}' \in \{0, 1\}$, $x \in \mathcal{X}^N$,
+  $y \in \mathcal{Y}^N$. (Note that this completely determines the
+  channels $P_{\overline{X}'|X^N}$ and $P_{\overline{Y}'|Y^N}$.)  Then we get 
+from 
+  (\ref{eq:optc1}) and (\ref{eq:optc2})
+  \begin{eqnarray} 
+    P[\overline{X}' \neq \overline{Y}' | \overline{X}' \neq \Delta \neq \overline{Y}'] 
+      & < & 2 \varepsilon' \label{eq:bitp1} \\
+    H(\overline{X}' | Z^N, \overline{X}' \neq \Delta \neq \overline{Y}') 
+      & > & 1-2\varepsilon' \label{eq:bitp2}.
+  \end{eqnarray}
+It remains to show that equality (\ref{eq:skcond2}) holds.  Let
+  therefore 
+  \begin{equation}
+      \delta
+    := 
+      1/2 - P[\overline{X}' = 0|\overline{X}' = \overline{Y}' \neq \Delta]
+  \end{equation}
+  and assume without loss of generality that $\delta \geq 0$. Define
+  \begin{equation}
+    P_{\overline{X}|\overline{X}'} (\overline{x}, \overline{x}') = 
+    \begin{cases}
+      1         & \text{if $\overline{x} = \overline{x}' = \Delta$ 
+                    or $\overline{x}=\overline{x}'=0$} \\
+      \frac{1/2-\delta}{1/2+\delta} 
+                & \text{if $\overline{x} = \overline{x}' = 1$} \\
+      1 - \frac{1/2-\delta}{1/2+\delta} 
+                & \text{if $\overline{x} = \Delta$ and $\overline{x}' = 1$} \\
+      0         & \text{otherwise}
+    \end{cases}
+  \end{equation}
+  and $\overline{Y} := \overline{Y}'$. Then
+  \begin{equation}
+     P[\overline{X} = 0 | E'] = P[\overline{X} = 1 | E'] = 1/2.
+  \end{equation}
+  It can easily be verified from (\ref{eq:bitp2}) that $\delta$ is of
+  order $\varepsilon'$ and thus the assertion follows
+  from (\ref{eq:bitp1}) and (\ref{eq:bitp2}).
+\pe
+Propositions~\ref{prop1} and~\ref{prop2} 
+do not  imply that Alice and Bob share 
+bound information in the considered distribution. More precisely, 
+the following statement, which we give as a conjecture, is the missing 
+gap in the way towards proving the existence  of bound information.
+
+\begin{con}\label{gapcon}
+Let $P_{XYZ}$ be a distribution. Then there exist binary-output 
+channels $P_{\OX|X}$ and $P_{\OY|Y}$ with $I(\OX;\OY\downarrow Z)>0$
+if and only if there exist, for some $N$, binary-output channels 
+$P_{\overline{X}|X^N}$ and $P_{\overline{Y}|Y^N}$ such that 
+$I(\overline{X};\overline{Y}\downarrow Z^N)>0$ holds.
+\end{con}
+
+
+The results of this section suggest that free intrinsic information
+can be binarized, whereas bound information cannot. We finally conjecture
+that this is also a way of distinguishing free from bound entanglement 
+on the quantum side.
+
+\begin{con}
+Let $\rho_{AB}$ be a mixed state over $\HA\otimes \HB$. Then $\rho_{AB}$
+ is free entangled if and only if 
+there are two-dimensional projectors $P_A$ and $P_B$ such that 
+$(P_A\otimes P_B)\rho_{AB} (P_A\otimes P_B)$ 
+is an entangled two-Qbit state. 
+\end{con}
+
+Note that it is clear that if Alice and Bob can produce entangled 
+Qbits, then they can always purify the original state because 
+these Qbits are free entangled. The conjecture states that the
+reverse implication 
+is also true. 
+This would mean that $\rho_{AB}$ is free entangled if and only if  Alice and
+Bob can produce entangled Qbits using a single copy of $\rho_{AB}$.
+
+
+
+
+
+
+
+\section{Concluding Remarks}
+We have considered the model of information-theoretic key agreement 
+by public discussion from correlated information. More precisely, 
+we have compared  scenarios where the joint information is 
+given by classical random variables and by quantum states (e.g., after 
+execution of a quantum protocol). We proved a close connection between
+such classical and quantum information,  namely between
+intrinsic information and entanglement.
+
+
+Furthermore,
+ examples have been presented that provide 
+ evidence for the fact that the close connections between classical and quantum 
+information extend to the level of the 
+protocols. A consequence would be that  the powerful tools and statements 
+on the existence or rather {\em non-existence\/} of quantum-purification
+protocols immediately carry over to the classical scenario, where it 
+is often  unclear how 
+to show that no protocol exists.
+Many examples
+coming from measuring bound entangled states, and for which none 
+of the known classical secret-key agreement protocols is successful,
+as well as some general facts on binarizing classical information,
+strongly
+suggest that bound entanglement  has a classical counterpart:
+intrinsic information which cannot be distilled to a secret key.
+This stands in sharp contrast to what was previously believed about 
+classical key agreement.
+This is one of the rare examples for which 
+ a concept of 
+information processing is first discovered on the quantum domain
+and then leads to new insight in the classical regime.
+
+
+
+Finally, we have proposed a measure for entanglement, based on classical 
+information theory, with all  the properties required for such a measure.
+
+
+\section*{Acknowledgments}
+
+The authors thank Gilles Brassard, Nicolas Cerf, Claude Cr\'epeau, 
+Serge Massar, 
+Ueli Maurer,  Michele Mosca, 
+Sandu Popescu, and Alain Tapp for interesting discussions. 
+The first and the third author were partially supported by 
+Switzerland's SNF,  and the third author was partially supported by 
+ Canada's NSERC.
+
+
+
+%\newpage
+
+
+\begin{thebibliography}{10}
+
+\bibitem{bg}
+H.~Bechmann-Pasquinucci and N.~Gisin,
+Incoherent and coherent eavesdropping in the six-state protocol
+of quantum cryptography, {\em Phys.\ Rev.~A}, Vol.~59, No.~6,
+pp.~4238--4248, 1999.
+
+\bibitem{benal}
+       C.~H.~Bennett, G.~Brassard, S.~Popescu,
+B.~Schumacher, J.~A.~Smolin, and W.~K.~Wooters,
+Purification of noisy entanglement and faithful teleportation
+via noisy channels,
+{\em Phys.\ Rev.\ Lett.}, Vol.~76, pp.~722--725, 1996.
+
+\bibitem{BB84} 
+C.~H.~Bennett and G.\ Brassard, 
+Quantum cryptography: public key distribution and coin tossing,
+{\it Proceedings of
+the IEEE International Conference on Computer, Systems, and Signal
+Processing}, IEEE, pp.~175--179, 1984.
+
+
+\bibitem{Dagmar6state} 
+D.\ Bruss, Optimal eavesdropping in quantum cryptography
+with six states, {\em Phys.\ Rev.\ Lett.}, Vol.~81, No.~14, pp.~3018--3021, 1998.
+
+\bibitem{Buzek} 
+V.\ Bu\v{z}ek and M.\ Hillery, 
+Quantum copying: beyond the no-cloning theorem,
+{\em Phys.\ Rev.~A}, Vol.\ 54, pp.~1844--1852, 1996.
+       
+
+
+\bibitem{CHSH}
+J.\, F.~Clauser, M.\, A.~Horne, A.~Shimony and R.\, A.\ Holt,
+Proposed experiment to test local hidden-variable theories,
+{\it Phys. Rev. Lett.}, Vol.~23, pp.~880--884, 1969. 
+
+
+
+\bibitem{csikor78} I.~Csisz\'{a}r and J.~K\"orner, 
+Broadcast channels with confidential messages, 
+{\em IEEE Transactions on Information Theory\/}, 
+Vol.~IT-24, pp.~339--348, 1978.
+
+
+\bibitem{QPA} D.\ Deutsch, A.\ Ekert, R.\ Jozsa, C.\ Macchiavello,
+S.\ Popescu, and A.\ Sanpera, Quantum privacy amplification and the 
+security of 
+quantum cryptography over
+noisy channels, {\em Phys.\ Rev.\ Lett.}, Vol.~77, pp.~2818--2821, 1996.
+
+
+\bibitem{difhel76} W.~Diffie and M.~E.~Hellman, New directions in
+  cryptography, {\em IEEE Transactions on Information Theory}, 
+Vol.~22, No.~6, pp.~644--654, 1976.
+
+
+
+
+\bibitem{benpt}
+D.~P.~DiVincenzo, P.~W.~Shor, J.~A.~Smolin, B.~M.~Terhal,
+and A.~V.~Thapliyal, Evidence for bound entangled states with negative 
+partial transpose, quant-ph/9910026, 1999.
+
+\bibitem{ekert}
+A.\ E.\ Ekert, Quantum cryptography based on Bell's theorem,
+{\em Phys.\ Rev.\ Lett.}, Vol.~67, pp.~661--663, 1991. See also  {\em Physics World},
+March 1998.
+
+\bibitem{FGGNP} C.~Fuchs, N.~Gisin, R.~B.~Griffiths, C.~S.~Niu, and A.~Peres,
+Optimal eavesdropping in quantum cryptography -- I: information bound and optimal
+strategy, {\em 
+           Phys.\ Rev.~A},  Vol.~56, pp.~1163--1172, 1997.
+
+
+\bibitem{gisin89} N.~Gisin, Stochastic quantum dynamics and relativity, 
+{\em Helv.\ Phys.\ Acta}, Vol.~62, pp.~363--371, 
+1989.
+
+
+
+\bibitem{GisinHuttner97} N.\ Gisin and B.\ Huttner, 
+Quantum cloning, eavesdropping, and Bell inequality,
+{\em Phys.\ Lett.~A}, Vol.~228,
+pp.~13--21, 1997.
+
+\bibitem{gismas} N.~Gisin and S.~Massar, 
+Optimal quantum cloning machines,
+{\em Phys.\ Rev.\ Lett.}, Vol.~79, pp.~2153--2156, 1997.
+
+\bibitem{grw00}
+N.\ Gisin, R.\ Renner, and S.\ Wolf,
+Bound information: the classical analog to bound entanglement,
+in {\em Proceedings of 3ecm}, Birkh\"auser Verlag, 2000.
+
+
+
+\bibitem{giswol00}
+N.\ Gisin and S.\ Wolf,
+Linking classical and quantum key agreement: is there ``bound
+information''?, in {\em Proceedings of CRYPTO 2000},  
+Lecture Notes in Computer Science, vol.~1880, pp.~482--500,
+Springer-Verlag, 2000.
+
+\bibitem{giswol99} N.~Gisin and S.~Wolf, Quantum cryptography on 
+noisy channels: quantum versus classical key agreement protocols,
+{\em Phys.\ Rev.\ Lett.}, Vol.~83, pp.~4200--4203, 1999.
+
+
+
+
+
+\bibitem{Horodecki}
+       M.~Horodecki, P.~Horodecki, and  R.~Horodecki, 
+Mixed-state entanglement and distillation: is there a ``bound''
+entanglement in nature?, {\em 
+Phys.\ Rev.\ Lett.}, Vol.~80, pp.~5239--5242, 1998.
+
+
+
+\bibitem{hohoho97}
+M.~Horodecki, P.~Horodecki, and  R.~Horodecki, 
+Inseparable 2 spin $1/2$ density matrices can be distilled to a singlet 
+form, {\em Phys.\ Rev.\ Lett.}, Vol.~78, p.~574, 1997.
+
+
+
+
+\bibitem{HorodeckiPartialTransp} 
+P.~Horodecki, Separability criterion and inseparable mixed states 
+with positive partial transposition, 
+{\em Phys.\ Lett.~A}, Vol.~232, p.~333, 1997.
+
+\bibitem{dreih}
+       P.~Horodecki, M.~Horodecki, and  R.~Horodecki, 
+Bound entanglement can be activated, 
+{\em 
+Phys.\ Rev.\ Lett.}, Vol.~82, pp.~1056--1059, 1999.
+quant-ph/9806058.
+
+
+\bibitem{hjw93} L.\, P.\ Hughston, R.\ Jozsa, and
+W.\, K.\ Wootters, 
+A complete classification of quantum ensembles having
+      a given density matrix,
+{\em Phys.\ Lett.~A}, Vol.~183, pp.~14--18, 1993.
+
+
+\bibitem{landau98}
+R.\ Landauer, Information is inevitably physical, {\em Feynman and 
+Computation 2}, Addison Wesley, Reading, 1998.
+
+\bibitem{landau96}
+R.\ Landauer, The  physical nature of information, {\em Phys.\ Lett.\ A},
+Vol.~217, p.~188, 1996.
+
+
+
+\bibitem{ka} U.~Maurer, Secret key agreement by public discussion from
+common information, {\em IEEE Transactions on Information Theory\/},
+Vol.~39, No.~3, pp.~733--742, 1993.
+
+\bibitem{strong}
+U.~Maurer and S.~Wolf,
+Information-theoretic key agreement: from weak to strong secrecy for free,
+{\em Proceedings of EUROCRYPT 2000},
+Lecture Notes in Computer Science, Vol.~1807, 
+pp.~352--368, Springer-Verlag, 2000.
+
+\bibitem{ittrans} 
+U.~Maurer and S.~Wolf, Unconditionally secure key agreement 
+and the  intrinsic
+conditional  information, 
+{\em IEEE Transactions on Information Theory\/}, 
+Vol.~45, No.~2, pp.~499--514, 1999.
+
+
+
+
+
+
+\bibitem{qp9609013} 
+N.\ D.\ Mermin, The Ithaca interpretation
+of quantum mechanics,
+{\em Pramana}, Vol.~51, pp.~549--565, 1998.
+
+
+
+
+\bibitem{Peresbook} A.~Peres, {\em Quantum theory: concepts and methods}, 
+Kluwer Academic Publishers, 1993.
+
+\bibitem{Peres} A.~Peres, 
+Separability criterion for density matrices,
+{\em Phys. Rev. Lett.}, Vol.~77, pp.~1413--1415, 1996.
+
+
+\bibitem{qp9610044} 
+S.~Popescu and D.\ Rohrlich, Thermodynamics and the measure of 
+entanglement,  quant-ph/9610044, 1996.
+
+\bibitem{ribo98} G.\ Ribordy,
+J.~D.~Gautier, N.~Gisin, O.~Guinnard, and H.~Zbinden, Automated plug and play quantum 
+key distribution,  {\em Electron.\ Lett.},
+Vol.~34, pp.~2116--2117, 1998.
+
+\bibitem{shannon}
+C.~E.~Shannon, Communication theory of secrecy systems,
+{\em Bell System Technical Journal}, Vol.~28, pp.~656--715, 1949.
+
+\bibitem{vernam26} 
+G.~S.~Vernam, Cipher printing telegraph systems for secret wire and 
+radio telegraphic communications, {\em Journal of the American
+Institute for Electrical Engineers}, Vol.~55, pp.~109--115, 1926.
+
+
+\bibitem{diss} S. Wolf, {\em Information-theoretically and computationally
+secure key agreement in cryptography}, ETH dissertation No.\ 13138, 
+Swiss Federal Institute of Technology (ETH Zurich), May 1999.
+
+
+\bibitem{wyner75}
+A.~D.~Wyner, The wire-tap channel,
+{\em Bell System Technical Journal}, Vol.~54, No.~8, pp.~1355--1387, 1975.
+
+\bibitem{QCexp} H.~Zbinden, H.~Bechmann, G.~Ribordy, and N.~Gisin, Quantum cryptography, 
+{\em Applied Physics B}, Vol.~67, pp.~743--748, 
+1998.
+
+
+
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}
+
+\newpage
+\section*{Appendix A: Figures}
+
+
+\begin{figure}[h]
+\hbox{
+\centerline{
+\psfig{figure=../key/aarhus/ska.eps,width=6cm}}}
+\caption{Secret-Key Agreement from Common Information}
+\label{maumod}
+\end{figure}
+
+
+
+
+\begin{figure}[h]
+\hbox{
+\centerline{
+\psfig{figure=channel.eps,width=4.5cm}}}
+\caption{The Channel $P_{\OZ|Z}$ in Example~1}
+\label{channel}
+\end{figure}
+
+\nopagebreak
+
+\begin{figure}[!h]
+\hbox{
+\centerline{
+\psfig{figure=qcw.eps,width=9cm}}}
+\caption{The Results of Example 3}
+\label{qcw}
+\end{figure}
+
+
+\newpage
+\section*{Appendix B: Measuring in ``bad'' Bases}
+
+In this appendix we show, by two examples, that the statements of Theorems~1 and~2
+do not always hold for the standard bases and, in particular, not for 
+arbitrary bases: Alice and Bob as well as Eve can perform bad measurements 
+and give away an initial advantage. Let us begin with an example where 
+measuring in the standard basis is a bad choice for Eve.
+\\ \
+
+\noi
+{\it Example 6.}
+Let us consider the quantum states
+\[
+\Psi  =  \frac{1}{\sqrt{5}}\, (|00+01+10\rangle \otimes|0\rangle  + |00+11\rangle \otimes|1\rangle )\ ,\ \ 
+\rho_{AB}  =  \frac{3}{5}\,  P_{|00+01+10\rangle } + \frac{2}{5}\,  P_{|00+11\rangle }\ .
+\]
+If Alice, Bob, and Eve measure in the standard bases, we get the classical distribution 
+ (to be normalized)
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\ \ X & 0 & 1\\
+Y (Z) &&\\
+\hline\hline
+0 & (0)\ 1 & (0)\ 1 \\
+ &  (1)\ 1 & (1)\ 0 \\
+\hline
+1 & (0)\ 1 & (0)\ 0 \\
+  & (1)\ 0 & (1)\ 1\\
+\hline
+\end{tabular}
+\end{center}
+For this distribution, $\ida>0$ holds. Indeed, 
+even $S(X;Y||Z)>0$ holds.
+This is not surprising since both $X$ and $Y$ 
+are binary, and since the described parallels suggest that in this 
+case, positive intrinsic information implies that a secret-key 
+agreement protocol exists. 
+
+The proof of $S(X;Y||Z)>0$ in this situation is analogous to the proof of this 
+fact in Example~3. The protocol consists of Alice and Bob independently 
+making their bits symmetric. Then the repeat-code protocol can be 
+applied. 
+
+However, the 
+partial-transpose condition shows that $\rho_{AB}$ is separable. This 
+means that measuring in the standard basis is bad for Eve. Indeed,
+let us rewrite $\Psi$ and $\rho_{AB}$ as
+\begin{eqnarray*}
+\Psi   & = &  \sqrt{\Lambda}\, |m,m\rangle \otimes|\tilde 0\rangle + 
+     \sqrt{1-\Lambda}\, |-m,-m\rangle \otimes|\tilde 1\rangle\ ,\\
+\rho_{AB} &  = &  \frac{5+\sqrt{5}}{10}\,  P_{|m,m\rangle } + 
+         \frac{5-\sqrt{5}}{10}\,  P_{|-m,-m\rangle }\ ,
+\end{eqnarray*}
+where
+$\Lambda  =  (5+\sqrt{5})/10$, 
+$|m,m\rangle  =  |m\rangle \otimes|m\rangle$,
+$|\pm m\rangle  =  \sqrt{(1\pm\eta)/2}\, |0\rangle  \pm \sqrt{(1\mp\eta)/2}\, |1\rangle$, and 
+$\eta  =  1/\sqrt{5}$.
+
+In this representation, $\rho_{AB}$ is obviously separable. It also means that 
+ Eve's optimal measurement basis is
+\[
+|\tilde 0\rangle =\sqrt{\Lambda}\, |0\rangle  - \frac{1}{\sqrt{5\Lambda}}\, |1\rangle \ ,\ \ 
+|\tilde 1\rangle =-\sqrt{1-\Lambda}\, |0\rangle  - \frac{1}{\sqrt{5(1-\Lambda)}}\, |1\rangle\ . 
+\]
+Then, $\ida=0$ holds for the resulting classical distribution.
+\exend
+\ \\
+
+\noi
+Not surprisingly, there also exist examples of distributions for which measuring 
+in the standard bases is bad for Alice and Bob. These states are entangled, but $\ida=0$
+holds.
+\\ \
+
+\noi
+{\it Example 7.}
+Let the following classical distribution be given:
+\begin{center}
+\begin{tabular}{|c||c|c|}
+\hline
+\ \ X & 0 & 1\\
+Y (Z) &&\\
+\hline\hline
+0 & (0)\ 0.0082 & (0)\ 0.0219 \\
+ &  (1)\ 0.0006 & (1)\ 0.0202 \\
+\hline
+1 & (0)\ 0.0729 & (0)\ 0.3928 \\
+  & (1)\ 0.0905 & (1)\ 0.3889204545\\
+\hline
+\end{tabular}
+\end{center}
+
+Because of 
+\[
+(0.0082+0.0006)\cdot (0.03928+0.3889204545)=(0.0219+0.0202)\cdot (0.0729+0.0905)
+\]
+we have $I(X;Y)=0$, thus $\ida=0$.
+On the other hand, the corresponding quantum state,
+for which the above distribution results by measuring in the standard bases,
+can be shown to be entangled. 
+\exend
+
+
+
+
+
+
+
+
+
+\section*{Appendix C: A Protocol for Advantage Distillation}
+
+
+ The following protocol for classical advantage distillation is called 
+  {\em repeat-code protocol\/} and was first proposed in~\cite{ka}. 
+Note that there exist  more 
+efficient protocols in terms of the amount of extractable secret key.
+However, since we only want to prove  qualitative possibility results,
+ it is sufficient to look at this simpler protocol.
+Assume the scenario of Example~1.
+
+
+Let $N>0$ be an even integer, and let Alice choose a random bit $C$ and send
+the block
+\[
+X^N\oplus C^N:=[X_1\oplus C,X_2\oplus C,\ldots, X_N\oplus C]
+\]
+over the classical channel.
+Here, $X^N$ stands for the block $[X_1,X_2,\ldots, X_N]$ of $N$ consecutive
+realizations of the random variable $X$,
+whereas $C^N$ stands for the $N$-bit block $[C,C,\ldots,C]$.
+Bob then computes
+$[(C\op X_1)\op Y_1,\ldots,(C\op X_N)\op Y_N]$ and (publicly)
+accepts exactly if this block
+is equal to either $[0,0,\ldots,0]$ or $[1,1,\ldots,1]$. In other words,
+Alice and Bob make use of a repeat code of length $N$ with the only two
+ codewords
+$[0,0,\ldots,0]$ and $[1,1,\ldots,1]$.
+
+
+Bob's conditional error
+probability $\be_N$
+when guessing the bit sent by Alice, given that he accepts, is
+\[
+\be_N=\frac{1}{p_{a,N}}\cdot D^N\leq\left(\frac{D}{1-D}\right)^N\ ,
+\]
+where $p_{a,N}=D^N+(1-D)^N$ 
+is the probability that Bob accepts the received 
+block.
+It is obvious that Eve's optimal 
+strategy for guessing $C$  is to compute the block
+$[(C\oplus X_1)\oplus Z_1,\ldots,(C\oplus X_N)\oplus Z_N]$ and guess $C$ as
+$0$ if at least half of the bits in this block are $0$, and as $1$ otherwise.
+Given that Bob correctly accepts, Eve's error probability when guessing the
+bit $C$ with the optimal strategy
+is lower bounded by $1/2$ times the probability that she decodes
+to a block with $N/2$ bits $0$ and the same number of $1$'s. Hence
+we get that 
+\[
+\ga_N\geq \frac{1}{2}{N \choose N/2}(1-\de)^{N/2}\de^{N/2}
+\geq\frac{K}{\sqrt{N}}\cdot\left(2\sqrt{(1-\de)\de}\right)^N
+\] 
+holds for some constant $K$ and 
+for sufficiently large $N$ by using Stirling's formula.
+Note that Eve's error probability given that Bob accepts is 
+asymptotically equal to her error probability given that 
+Bob {\em correctly\/} accepts because Bob accepts erroneously
+only with asymptotically vanishing probability, given that he 
+accepts.
+
+Although it is not the adversary's ultimate goal to guess the bits 
+$C$ sent by Alice, it has been shown 
+that the fact that $\be_N$ decreases exponentially faster than $\ga_N$
+implies that for sufficiently large $N$, Bob has more (Shannon) information
+about the bit $C$ than Eve (see for example~\cite{ittrans}). 
+Hence Alice and Bob have managed to generate
+new random variables with the property that Bob obtains more information about 
+Alice's random bit than Eve has. Thus $S(X;Y||Z)>0$ holds.
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
