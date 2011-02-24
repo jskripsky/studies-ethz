@@ -1,0 +1,34 @@
+createColl:
+- check syntax ("create", n, "as", "set"/"bag")
+- check if name not already in store
+- return store with new collection added
+
+chooser, case expression:
+- converts input into char list
+- pass char list, unnamed empty bag, store to parser
+
+p:
+- pars: char list of input, intermediate result, store
+- works in a "one char at a time" fashion!
+
+Sample Session
+==============
+
+create b as bag
+insert 1 in b
+
+create s as set
+insert 2 in s
+
+s+b
+
+quit
+
+
+=> CL-Gerüst: Beispiel, wie man es nicht tun sollte.
+
+Ueb.Std.:
+- compose...
+- ReDef Func => shadowing
+- "curried datatypes"
+- CL

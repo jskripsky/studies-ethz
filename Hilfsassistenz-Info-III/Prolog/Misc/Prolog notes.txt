@@ -1,0 +1,62 @@
+The ML Way of Programming
+> Defining function
+> Evaluating functions
+
+- many Constructs, complex syntax
++ strong static type checking
++ fast
++ no interal knowledge needed (evaluation details...)
+
+The Prolog World
+> Defining Predicates
+> Fullfilling Predicates
+
+- one construct, simple syntax
+- slow
+- no type checking
+- internal knowledge needed
+
+
+- _Eine_ Definition, 2^3=8 "Funktionen" (7 davon sind sogar sinnvoll!)
+- Diese "Funktionen" sind mächtiger als gewöhnliche Funktionen:
+  bei mehreren Outputs können alle ermittelt werden!
+
+SML:	performance
+Prolog:	power
+
+
+count([],0).
+count([_|Xs],Y) :- count(Xs,Z), Y is Z+1.
+
+% last([X],X).
+% last([X|Xs],Y) :- last(Xs,Y).
+
+reverse([], []).
+reverse([X|Xs], Zs) :- append(Ys, [X], Zs), reverse(Xs, Ys).
+
+count :-
+     read(List_In),
+     count(List_In,Cnt),
+     write('Count is '),
+     write(Cnt), nl.
+
+sum([],0).
+sum([X|Xs],S) :- sum(Xs,T), S is T+X.
+
+smaller([],_).
+smaller([X|Xs],M) :- M<X, smaller(Xs,M).
+
+min([],nil).
+min([X|Xs],Y) :- X=Y, smaller(Xs,Y).
+min([X|Xs],Y) :- X>Y, min(Xs,Y).
+
+% nth implementation test:
+% ========================
+% test(1,[X|_],X).
+% test(Index, [_|Xs],Element) :- I2 is Index-1, test(I2,Xs,Element).
+
+smallest(_,[]).
+smallest(X,[Y|Ys]) :- X=<Y, smallest(X,Ys).
+
+sorted([]).
+sorted([X|Xs]) :- smallest(X,Xs), sorted(Xs).

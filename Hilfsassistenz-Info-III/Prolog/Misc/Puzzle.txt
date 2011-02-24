@@ -1,0 +1,62 @@
+:- use_module(library(lists)).
+
+next_to(X,Y) :- Y is X+1.
+next_to(X,Y) :- Y is X-1.
+neighbor(X,Y1,X,Y2) :- next_to(Y1,Y2).
+neighbor(X1,Y,X2,Y) :- next_to(X1,X2).
+
+tile(B,X,Y,N) :- nth(Y,B,Row), nth(X,Row,N).
+
+swap_tiles([],[],_,_).
+swap_tiles([R|Rs],[NR|NRs],N1,N2) :-
+	substitute(N1,R,x,R2),
+	substitute(N2,R2,N1,R3),
+	substitute(x,R3,N2,NR),
+	swap_tiles(Rs,NRs,N1,N2).
+
+move(N,B1,B2) :-
+	tile(B1,X1,Y1,N), tile(B1,X2,Y2,' '),
+	neighbor(X1,Y1,X2,Y2),
+	swap_tiles(B1,B2,N,' ').
+
+moves([],B1,B2,Max) :- B1=B2, Max>=0.
+moves([N|Ns],B1,B3,Max) :- 
+	Max>0, move(N,B1,B2),
+	NewMax is Max-1, moves(Ns,B2,B3,NewMax).
+
+shortest(Ns,B1,B2) :-
+	length(Ns,L), moves(Ns,B1,B2,L),
+	Max is L-1, \+moves(_,B1,B2,Max).
+
+shortest(Ns,B1,B2,L) :-
+	moves(Ns,B1,B2,L),
+	Max is L-1, \+moves(_,B1,B2,Max).
+
+
+% optional (unbounded):
+moves([],B1,B2) :- B1=B2.
+moves([N|Ns],B1,B3) :- move(N,B1,B2), moves(Ns,B2,B3).
+
+% Build-up of solution:
+% =====================
+% shortest(Ns,B1,B2,Max) :- moves(Ns,B1,B2,Max).
+% shortest(Ns,B1,B2,Max) :- NewMax is Max+1, shortest(Ns,B1,B2,NewMax).
+% shortest(Ns,B1,B2) :- shortest(Ns,B1,B2,0).
+
+% Testing:
+% ========
+
+scrambled([[1,5,2],[7,' ',3],[8,4,6]]).
+ordered([[1,2,3],[4,5,6],[7,8,' ']]).
+
+ordered4x4([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,' ']]).
+scrambled4x4([[2,3,7,4],[1,5,' ', 8],[9,6,10,11],[13,14,15,12]]).
+
+% Sample session
+% ==============
+%
+% | ?- scrambled(S), ordered(O), shortest(List,S,O).
+%
+% S = [[1,5,2],[7,' ',3],[8,4,6]],
+% O = [[1,2,3],[4,5,6],[7,8,' ']],
+% List = [6,3,2,5,4,7,8,4] ?

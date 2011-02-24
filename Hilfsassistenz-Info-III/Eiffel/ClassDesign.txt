@@ -1,0 +1,26 @@
+- specialize as subclass or parameterize (one-tile : tile / tile.number = 1)
+
+- Spiel auf Brett mit anderen Figuren und Regeln
+- anderes Brett
+- andere Anzahl Spieler
+
+
+Bemerkungen:
+- bei jedem Zug
+  - muss die überstrichene Strecke frei sein
+  - Endfeld darf besetzt sein (=> Schlag)
+  - Ausnahme Knights: überstrichene Strecke darf besetzt sein
+
+
+Elemente:
+- Figur (Name, Bewegungsart, ...)
+- konkr. Figur (pos, mögl. Ziele, 
+- Zug
+-
+
+
+
+Classes:
+- Board
+- 
+- Move

@@ -1,0 +1,78 @@
+******************* NAMES *************************
+The list of names consists of names (only letters)
+separated by spaces and terminated by newline
+
+Introduce the list of men names:   david peter michael
+Introduce the list of women names: susan nicole mary    
+
+******************* CITIES ************************
+The name of the city consists of one word
+(only letters) followed by newline
+
+For each man input the city he lives in
+   City of david:    zurich
+   City of peter:    basel
+   City of michael:  geneva
+For each woman input the city she lives in
+   City of susan:    basel
+   City of nicole:   bern
+   City of mary:     zurich
+
+******************* INTERESTS *********************
+The list of interests consists of a list of
+at most 5 words (one word contains only letters),
+the words being separated by spaces, and the list
+being terminated by newline
+
+For each man input his interests
+   Interests of david:   drinking football 
+   Interests of peter:   tennis music
+   Interests of michael: prolog
+
+For each woman input her interests
+   Interests of susan:   shopping
+   Interests of nicole:  swimming reading
+   Interests of mary:    tennis 
+
+**************** LEVELS OF ATTRACTIVENESS **************
+For each man indicate the level of attractiveness for the specified woman
+(a number in the range 1-10, 10 = most attractive followed by .)
+How attractive finds david
+        susan:   5.
+        nicole:  8.
+        mary     2.
+How attractive finds peter
+        susan:   6.
+        nicole:  3.
+        mary     9.
+How attractive finds michael
+        susan:   4.
+        nicole:  6.
+        mary:    5.
+
+For each woman indicate the level of attractiveness for the specified man
+(a number in the range 1-10, 10 = most attractive followed by .)
+How attractive finds susan
+        david:   2.
+        peter:   9.
+        michael: 7.
+How attractive finds nicole
+        david:   7.
+        peter:   8.
+        michael: 5.
+How attractive finds mary
+        david:   3.
+        peter:   5.
+        michael: 6.
+
+***************** RECOMMENDED PARTNERS **********************
+*   Crt.            Man                 Woman               *
+*   No.                                                     *
+*************************************************************
+*   1               david               nicole              *
+*   2               peter               susan               *
+*   3               michael             mary                *
+*************************************************************
+
+yes
+| ?- 
